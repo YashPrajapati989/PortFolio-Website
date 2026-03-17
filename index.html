@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="assets/css/sections/about.css">
     <link rel="stylesheet" href="assets/css/sections/work.css">
     <link rel="stylesheet" href="assets/css/sections/process.css">
+    <link rel="stylesheet" href="assets/css/sections/skills.css">
 </head>
 <body>
     <!-- Mobile Menu Overlay -->
@@ -278,6 +279,44 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Module 07: Skills Constellation -->
+            <section class="skills" id="skills">
+                <div class="container skills-header-container">
+                    <div class="skills-header">
+                        <h2 class="section-title text-heading">Skills Constellation</h2>
+                        <p class="section-subtitle text-mono">The tech stack</p>
+                    </div>
+                    <div class="skills-legend text-mono">
+                        <span class="legend-item"><span class="legend-dot" style="background-color: var(--color-accent);"></span> Core</span>
+                        <span class="legend-item"><span class="legend-dot" style="background-color: var(--color-accent-2);"></span> Supporting</span>
+                        <span class="legend-item"><span class="legend-dot" style="background-color: var(--color-text-muted);"></span> Familiar</span>
+                    </div>
+                </div>
+                
+                <div class="canvas-container" id="skills-canvas-container">
+                    <!-- HTML Canvas for the interactive constellation -->
+                    <canvas id="skills-canvas"></canvas>
+                    
+                    <!-- Fallback/Accessible list (hidden visually, available to screen readers) -->
+                    <div class="sr-only">
+                        <h3>Core Skills</h3>
+                        <ul>
+                            <li>JavaScript/TypeScript</li>
+                            <li>React / Next.js</li>
+                            <li>Node.js</li>
+                            <li>Python</li>
+                        </ul>
+                        <h3>Supporting Skills</h3>
+                        <ul>
+                            <li>HTML / CSS</li>
+                            <li>Three.js / GSAP</li>
+                            <li>SQL / NoSQL</li>
+                            <li>Git / GitHub</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
         </main>
     </div>
 
@@ -287,6 +326,7 @@
     <script src="assets/js/sections/about.js"></script>
     <script src="assets/js/sections/work.js"></script>
     <script src="assets/js/sections/process.js"></script>
+    <script src="assets/js/sections/skills.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

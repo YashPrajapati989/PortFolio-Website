@@ -1,0 +1,77 @@
+/* ==========================================================================
+   Module 07: Skills Constellation
+   ========================================================================== */
+
+.skills {
+  padding: var(--space-16) 0 0 0; /* No bottom padding, canvas touches next section */
+  background-color: var(--color-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.skills-header-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  margin-bottom: var(--space-8);
+  position: relative;
+  z-index: 10;
+}
+
+@media (min-width: 768px) {
+  .skills-header-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+}
+
+.skills-legend {
+  display: flex;
+  gap: var(--space-6);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.canvas-container {
+  width: 100%;
+  height: 70vh; /* Takes up decent viewport height */
+  min-height: 500px;
+  position: relative;
+  background-color: var(--color-bg);
+  /* Optional slight radial gradient to make it look like space */
+  background: radial-gradient(circle at center, var(--color-surface) 0%, var(--color-bg) 100%);
+}
+
+#skills-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: crosshair;
+}
+
+/* Screen reader only utility class */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

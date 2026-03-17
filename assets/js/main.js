@@ -23,6 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof window.animations.initProcess === 'function') {
     window.animations.initProcess();
   }
+
+  if (typeof window.animations.initSkills === 'function') {
+    window.animations.initSkills();
+  }
 });
 
 function initNavigation() {

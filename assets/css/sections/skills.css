@@ -1,66 +1,110 @@
 /* ==========================================================================
-   Module 07: Skills Constellation
+   Module 07: Abilities Panel (Skills)
    ========================================================================== */
 
 .skills {
-  padding: var(--space-16) 0 0 0; /* No bottom padding, canvas touches next section */
+  padding: var(--space-24) 0;
   background-color: var(--color-bg);
   position: relative;
-  overflow: hidden;
 }
 
-.skills-header-container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
-  margin-bottom: var(--space-8);
+.skills-inner {
   position: relative;
-  z-index: 10;
+  z-index: 2;
+}
+
+.abilities-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
 }
 
 @media (min-width: 768px) {
-  .skills-header-container {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
+  .abilities-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-.skills-legend {
-  display: flex;
-  gap: var(--space-6);
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
+.ability-category {
+  padding: var(--space-8);
+  position: relative;
+  transition: all 0.3s var(--ease-smooth);
 }
 
-.legend-item {
+.ability-category.highlighted {
+  border-color: var(--color-accent-2);
+}
+
+.ability-category.highlighted::before {
+  border-color: var(--color-accent-2);
+}
+
+.ability-cat-title {
+  font-size: var(--text-sm);
+  letter-spacing: 0.2em;
+  color: var(--color-accent);
+  margin-bottom: var(--space-8);
+  border-bottom: 1px solid var(--color-border-dim);
+  padding-bottom: var(--space-3);
+  text-transform: uppercase;
+}
+
+.ability-category.highlighted .ability-cat-title {
+  color: var(--color-accent-2);
+}
+
+.ability-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.ability-item {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-4);
 }
 
-.legend-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  display: inline-block;
+.ability-info {
+  flex: 1;
 }
 
-.canvas-container {
-  width: 100%;
-  height: 70vh; /* Takes up decent viewport height */
-  min-height: 500px;
-  position: relative;
-  background-color: var(--color-bg);
-  /* Optional slight radial gradient to make it look like space */
-  background: radial-gradient(circle at center, var(--color-surface) 0%, var(--color-bg) 100%);
-}
-
-#skills-canvas {
-  width: 100%;
-  height: 100%;
+.ability-name {
   display: block;
-  cursor: crosshair;
+  font-size: var(--text-xs);
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.ability-item:hover .ability-name {
+  color: var(--color-text);
+}
+
+.ability-rank {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.rank-node {
+  width: 16px;
+  height: 4px;
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  transition: all 0.4s ease;
+}
+
+.rank-node.filled {
+  background: var(--color-accent);
+  box-shadow: 0 0 6px var(--color-accent);
+}
+
+.ability-category.highlighted .rank-node.filled {
+  background: var(--color-accent-2);
+  box-shadow: 0 0 6px var(--color-accent-2);
 }
 
 /* Screen reader only utility class */

@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yash Prajapati | Full Stack Developer | Storytelling Portfolio</title>
-    <meta name="description" content="Portfolio of Yash Prajapati, Full Stack Developer specializing in AI interface design, robust backend logic, and crafted digital experiences.">
-    <meta name="keywords" content="Yash Prajapati, Full Stack Developer, Web Development, AI, Portfolio, JavaScript, Python">
+    <title>Yash Prajapati | Data Analyst & AI Application Developer</title>
+    <meta name="description"
+        content="Portfolio of Yash Prajapati, a Data Analyst & AI Application Developer specializing in machine learning, data cleaning, and building intelligent applications.">
+    <meta name="keywords"
+        content="Yash Prajapati, Data Analyst, AI Developer, Machine Learning, Python, SQL, Power BI, React Native">
     <meta name="author" content="Yash Prajapati">
     <!-- Open Graph for social sharing -->
     <meta property="og:title" content="Yash Prajapati | Portfolio">
@@ -14,15 +17,17 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    
+
     <!-- Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    
+
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/components.css">
@@ -30,25 +35,33 @@
     <link rel="stylesheet" href="assets/css/sections/hero.css">
     <link rel="stylesheet" href="assets/css/sections/about.css">
     <link rel="stylesheet" href="assets/css/sections/work.css">
-    <link rel="stylesheet" href="assets/css/sections/process.css">
+    <link rel="stylesheet" href="assets/css/sections/chronicles.css">
     <link rel="stylesheet" href="assets/css/sections/skills.css">
     <link rel="stylesheet" href="assets/css/sections/case-study.css">
     <link rel="stylesheet" href="assets/css/sections/footer.css">
     <link rel="stylesheet" href="assets/css/sections/preloader.css">
 </head>
+
 <body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="custom-cursor-glow" id="custom-cursor-glow"></div>
+
     <!-- Preloader -->
     <div id="preloader" class="preloader">
-        <div class="preloader-text text-mono">Loading Experience...</div>
-        <div class="preloader-bar"></div>
+        <div class="preloader-text text-mono" id="loader-text"></div>
+        <div class="preloader-bar-container">
+            <div class="preloader-bar"></div>
+        </div>
+        <div class="preloader-percentage text-mono">0%</div>
     </div>
 
     <!-- Mobile Menu Overlay -->
     <div class="mobile-menu" id="mobile-menu">
         <ul class="mobile-nav-list">
-            <li><a href="#about" class="mobile-nav-link">Origin</a></li>
-            <li><a href="#work" class="mobile-nav-link">Work</a></li>
-            <li><a href="#process" class="mobile-nav-link">Process</a></li>
+            <li><a href="#about" class="mobile-nav-link">About</a></li>
+            <li><a href="#work" class="mobile-nav-link">Projects</a></li>
+            <li><a href="#chronicles" class="mobile-nav-link">Chronicles</a></li>
             <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
         </ul>
     </div>
@@ -59,9 +72,10 @@
                 <a href="#" class="brand text-heading">Yash Prajapati</a>
                 <nav class="main-nav" id="main-nav">
                     <ul class="nav-list text-mono">
-                        <li><a href="#about" class="nav-link">Origin</a></li>
-                        <li><a href="#work" class="nav-link">Work</a></li>
-                        <li><a href="#process" class="nav-link">Process</a></li>
+                        <li><a href="#about" class="nav-link">About</a></li>
+                        <li><a href="#work" class="nav-link">Projects</a></li>
+                        <li><a href="#chronicles" class="nav-link">Chronicles</a></li>
+                        <li><a href="#skills" class="nav-link">Skills</a></li>
                         <li><a href="#contact" class="nav-link">Contact</a></li>
                     </ul>
                 </nav>
@@ -71,276 +85,537 @@
                 </button>
             </div>
         </header>
-        
-        <!-- Module 03: Hero Section -->
+
+        <!-- Module 03: Hero Section (Title Screen) -->
         <section class="hero" id="hero">
             <canvas id="hero-canvas" class="hero-canvas"></canvas>
             <div class="container hero-inner">
-                <div class="hero-content corner-bracket-container corner-brackets" style="padding: var(--space-8);">
-                    <p class="hero-label text-mono">Hello, I am Yash Prajapati</p>
-                    <h1 class="hero-title text-heading">
-                        <span class="title-line">Crafting</span>
-                        <span class="title-line">Digital</span>
-                        <span class="title-line">Experiences</span>
+                <div class="hero-content" id="hero-reveal-box">
+                    <p class="hero-label text-mono" id="hero-pre-title">DATA ANALYST & AI DEVELOPER</p>
+                    <h1 class="hero-title text-heading" id="main-title">
+                        <span class="title-line">Yash</span>
+                        <span class="title-line">Prajapati</span>
                     </h1>
-                    <p class="hero-tagline text-body" id="hero-typewriter"></p>
+                    <div class="hero-subtitle-container">
+                        <p class="hero-tagline text-heading-alt" id="hero-typewriter"></p>
+                    </div>
+
+                    <div class="hero-cta">
+                        <a href="#work" class="btn-game">
+                            <span class="btn-text">VIEW PROJECTS</span>
+                            <span class="btn-glitch"></span>
+                        </a>
+                        <a href="#contact" class="btn-game btn-outline">
+                            <span class="btn-text">CONTACT ME</span>
+                            <span class="btn-glitch"></span>
+                        </a>
+                    </div>
                 </div>
-                
+
                 <div class="scroll-indicator">
                     <span class="scroll-text text-mono">Scroll to explore</span>
                     <div class="scroll-line"></div>
                 </div>
             </div>
         </section>
-        
+
         <main id="main-content">
-            <!-- Module 04: Origin Story -->
+            <!-- Module 04: Character Sheet (About) -->
             <section class="about" id="about">
-                <div class="about-header container">
-                    <h2 class="section-title text-heading glitch-text" data-text="Origin Story">Origin Story</h2>
-                    <p class="section-subtitle text-mono">How it all started</p>
-                </div>
-                
-                <div class="timeline-container" id="timeline-container">
-                    <div class="timeline-wrapper" id="timeline-wrapper">
-                        <!-- Chapter 1 -->
-                        <div class="timeline-item">
-                            <div class="timeline-content">
-                                <span class="timeline-year text-mono">The Beginning</span>
-                                <h3 class="timeline-title text-heading">Discovering the Web</h3>
-                                <p class="timeline-text text-body">
-                                    Fascinated by how lines of code could create interactive experiences, I started building small scripts and single-page sites, lighting the spark for full-stack development.
-                                </p>
-                            </div>
-                            <div class="timeline-visual">
-                                <!-- Placeholder for parallax image -->
-                                <div class="parallax-img-wrapper">
-                                    <div class="parallax-img" style="background-color: var(--color-surface-2);"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Chapter 2 -->
-                        <div class="timeline-item">
-                            <div class="timeline-content">
-                                <span class="timeline-year text-mono">The Realization</span>
-                                <h3 class="timeline-title text-heading">Bridging Design & Code</h3>
-                                <p class="timeline-text text-body">
-                                    I realized that true digital experiences aren't just built; they are crafted. I began focusing on the intersection of robust backend logic and beautiful, intuitive frontend design.
-                                </p>
-                            </div>
-                            <div class="timeline-visual">
-                                <div class="parallax-img-wrapper">
-                                    <div class="parallax-img" style="background-color: var(--color-surface);"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Chapter 3 -->
-                        <div class="timeline-item">
-                            <div class="timeline-content">
-                                <span class="timeline-year text-mono">Present Day</span>
-                                <h3 class="timeline-title text-heading">Building Stories</h3>
-                                <p class="timeline-text text-body">
-                                    Today, I build applications like Smart Attendx and intelligent video interfaces, treating every project as a narrative that solves real problems with elegance.
-                                </p>
-                            </div>
-                            <div class="timeline-visual">
-                                <div class="parallax-img-wrapper">
-                                    <div class="parallax-img" style="background-color: var(--color-border);"></div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="container about-inner">
+                    <div class="about-header section-header-hud">
+                        <h2 class="section-title text-heading">CHARACTER SHEET</h2>
+                        <p class="section-subtitle text-mono">Data Analyst · AI App Developer</p>
                     </div>
-                    
-                    <!-- Progress Bar -->
-                    <div class="timeline-progress-container">
-                        <div class="timeline-progress-bar" id="timeline-progress"></div>
+
+                    <div class="char-sheet-grid">
+                        <!-- Left: Portrait & Stats -->
+                        <div class="char-portrait-col">
+                            <div class="hex-frame-container">
+                                <div class="hex-frame">
+                                    <div class="hex-inner">
+                                        <!-- Placeholder for profile image -->
+                                        <div class="char-portrait" style="background-color: var(--color-surface);">
+                                        </div>
+                                    </div>
+                                    <div class="hex-border-glow"></div>
+                                </div>
+                            </div>
+
+                            <div class="char-stats-panel">
+                                <h3 class="stats-title text-heading-alt">ATTRIBUTES</h3>
+                                <div class="stat-row">
+                                    <span class="stat-label text-mono">DATA ANALYSIS</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" style="width: 92%;"></div>
+                                    </div>
+                                    <span class="stat-value text-mono">92</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label text-mono">MACHINE LEARNING</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" style="width: 85%;"></div>
+                                    </div>
+                                    <span class="stat-value text-mono">85</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label text-mono">APP DEVELOPMENT</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" style="width: 88%;"></div>
+                                    </div>
+                                    <span class="stat-value text-mono">88</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label text-mono">AI SYSTEMS</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" style="width: 90%;"></div>
+                                    </div>
+                                    <span class="stat-value text-mono">90</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Bio & Lore -->
+                        <div class="char-bio-col">
+                            <div class="char-lore-box hud-panel">
+                                <h3 class="lore-title text-heading-alt">ABOUT ME</h3>
+                                <div class="lore-content text-body">
+                                    <p>Yash Prajapati is a <span class="text-accent">Data Analyst & AI Application
+                                            Developer</span> with a strong foundation in Python, SQL, and machine
+                                        learning — passionate about turning raw data into actionable insights.</p>
+                                    <p>As a <span class="text-accent">Data Analyst Intern</span>, he worked on
+                                        real-world datasets: cleaning data, building dashboards in Power BI, and
+                                        extracting insights that drove decision-making. He also built full-stack AI
+                                        applications using <span class="text-accent-2">React Native</span> and <span
+                                            class="text-accent-2">Flask</span>.</p>
+                                    <p>Driven by a belief that <span class="text-accent-2">data is the most powerful
+                                            story</span>, he combines analytical precision with engineering creativity
+                                        to build intelligent systems that solve real problems.</p>
+                                </div>
+                                <div class="char-class-tags text-mono">
+                                    <span class="tag">DATA ANALYTICS</span>
+                                    <span class="tag">MACHINE LEARNING</span>
+                                    <span class="tag">AI DEVELOPMENT</span>
+                                    <span class="tag">BSc COMPUTER SCIENCE</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
-            
+
+
             <!-- Module 05: The Work -->
             <section class="work" id="work">
                 <div class="container">
-                    <div class="work-header">
-                        <h2 class="section-title text-heading glitch-text" data-text="The Work">The Work</h2>
-                        <div class="work-filters text-mono" id="work-filters">
-                            <button class="filter-btn active" data-filter="all">All</button>
-                            <button class="filter-btn" data-filter="app">Apps</button>
-                            <button class="filter-btn" data-filter="web">Web</button>
-                            <button class="filter-btn" data-filter="ai">AI</button>
-                        </div>
-                    </div>
-                    
-                    <div class="work-grid" id="work-grid">
-                        <!-- Project 1 -->
-                        <div class="work-item" data-category="app">
-                            <div class="work-img-wrapper">
-                                <!-- Placeholder Image -->
-                                <div class="work-img" style="background-color: var(--color-surface-2);"></div>
-                                <div class="work-overlay">
-                                    <div class="work-overlay-content">
-                                        <p class="work-category text-mono">App Development</p>
-                                        <h3 class="work-title text-heading">Smart Attendx App</h3>
-                                        <button class="btn btn-primary open-modal-btn" data-modal="modal-1">View Case Study</button>
-                                    </div>
-                                </div>
+                    <div class="container work-inner">
+                        <div class="work-header section-header-hud">
+                            <h2 class="section-title text-heading">LEVEL SELECT</h2>
+                            <div class="work-filters text-mono" id="work-filters">
+                                <button class="filter-btn active" data-filter="all">ALL MISSIONS</button>
+                                <button class="filter-btn" data-filter="ai">AI SYSTEMS</button>
+                                <button class="filter-btn" data-filter="data">DATA</button>
+                                <button class="filter-btn" data-filter="ml">ML</button>
+                                <button class="filter-btn" data-filter="app">APP DEV</button>
                             </div>
                         </div>
 
-                        <!-- Project 2 -->
-                        <div class="work-item" data-category="ai">
-                            <div class="work-img-wrapper">
-                                <!-- Placeholder Image -->
-                                <div class="work-img" style="background-color: var(--color-surface);"></div>
-                                <div class="work-overlay">
-                                    <div class="work-overlay-content">
-                                        <p class="work-category text-mono">AI Interface</p>
-                                        <h3 class="work-title text-heading">Smart Video Player</h3>
-                                        <button class="btn btn-primary open-modal-btn" data-modal="modal-2">View Case Study</button>
+                        <div class="work-grid" id="work-grid">
+                            <!-- Project 1: Smart AttendX -->
+                            <div class="work-item" data-category="ai">
+                                <div class="card-3d">
+                                    <div class="card-front">
+                                        <div class="work-img" style="background-color: var(--color-surface-2);"></div>
+                                        <div class="card-hud">
+                                            <span class="genre-tag text-mono">AI SYSTEM | MOBILE APP</span>
+                                            <h3 class="work-title text-heading">SMART ATTENDX</h3>
+                                        </div>
+                                    </div>
+                                    <div class="card-back">
+                                        <div class="card-back-content hud-panel">
+                                            <h4 class="text-heading-alt">MISSION BRIEF</h4>
+                                            <p class="text-body">AI-powered face recognition attendance system built
+                                                with React Native & Flask. Features real-time tracking, secure login,
+                                                and automated reports.</p>
+                                            <button class="btn-game btn-sm open-modal-btn" data-modal="modal-1">VIEW
+                                                DATA</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Project 3 -->
-                        <div class="work-item" data-category="web">
-                            <div class="work-img-wrapper">
-                                <!-- Placeholder Image -->
-                                <div class="work-img" style="background-color: var(--color-border);"></div>
-                                <div class="work-overlay">
-                                    <div class="work-overlay-content">
-                                        <p class="work-category text-mono">Web Design</p>
-                                        <h3 class="work-title text-heading">Cinematic Portfolio</h3>
-                                        <button class="btn btn-primary open-modal-btn" data-modal="modal-3">View Case Study</button>
+                            <!-- Project 2: ETL Dashboard -->
+                            <div class="work-item" data-category="data">
+                                <div class="card-3d">
+                                    <div class="card-front">
+                                        <div class="work-img" style="background-color: var(--color-surface);"></div>
+                                        <div class="card-hud">
+                                            <span class="genre-tag text-mono">DATA | POWER BI</span>
+                                            <h3 class="work-title text-heading">ETL DASHBOARD</h3>
+                                        </div>
+                                    </div>
+                                    <div class="card-back">
+                                        <div class="card-back-content hud-panel">
+                                            <h4 class="text-heading-alt">MISSION BRIEF</h4>
+                                            <p class="text-body">Financial Transactions ETL pipeline with data cleaning,
+                                                transformation, and interactive Power BI dashboards for business
+                                                insights.</p>
+                                            <button class="btn-game btn-sm open-modal-btn" data-modal="modal-2">VIEW
+                                                DATA</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Project 3: ML Projects -->
+                            <div class="work-item" data-category="ml">
+                                <div class="card-3d">
+                                    <div class="card-front">
+                                        <div class="work-img" style="background-color: var(--color-border-dim);"></div>
+                                        <div class="card-hud">
+                                            <span class="genre-tag text-mono">ML | PYTHON</span>
+                                            <h3 class="work-title text-heading">ML PROJECTS</h3>
+                                        </div>
+                                    </div>
+                                    <div class="card-back">
+                                        <div class="card-back-content hud-panel">
+                                            <h4 class="text-heading-alt">MISSION BRIEF</h4>
+                                            <p class="text-body">Spam classifier, Iris classification, and K-Means
+                                                clustering. Applied preprocessing, feature selection, and model
+                                                evaluation with Scikit-learn.</p>
+                                            <button class="btn-game btn-sm open-modal-btn" data-modal="modal-3">VIEW
+                                                DATA</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Project 4: AI Video Player -->
+                            <div class="work-item" data-category="app">
+                                <div class="card-3d">
+                                    <div class="card-front">
+                                        <div class="work-img" style="background-color: rgba(0, 207, 255, 0.08);"></div>
+                                        <div class="card-hud">
+                                            <span class="genre-tag text-mono">APP DEV | AI</span>
+                                            <h3 class="work-title text-heading">AI VIDEO PLAYER</h3>
+                                        </div>
+                                    </div>
+                                    <div class="card-back">
+                                        <div class="card-back-content hud-panel">
+                                            <h4 class="text-heading-alt">MISSION BRIEF</h4>
+                                            <p class="text-body">Feature-rich AI video player mobile app built with
+                                                React Native. Advanced video controls, smooth UI/UX, and intelligent
+                                                playback features.</p>
+                                            <button class="btn-game btn-sm open-modal-btn" data-modal="modal-4">VIEW
+                                                DATA</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+
+
             </section>
-            
-            <!-- Project Modals (Collapsed for brevity) -->
+
+            <!-- Project Modals -->
             <div class="modal-overlay" id="project-modal">
-                <div class="modal-content">
+                <div class="modal-content hud-panel">
                     <button class="modal-close" aria-label="Close modal">×</button>
-                    <!-- ... -->
+                    <div class="modal-body">
+                        <div class="modal-header">
+                            <span id="modal-category" class="text-mono text-accent-2">CATEGORY</span>
+                            <h2 id="modal-title" class="text-heading">Project Title</h2>
+                        </div>
+                        <div class="modal-info">
+                            <p id="modal-description" class="text-body">Project description and details will appear
+                                here.</p>
+                        </div>
+                        <div class="modal-cta">
+                            <a href="#" class="btn-game btn-sm">VIEW REPOSITORY</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Module 06: The Process -->
-            <section class="process" id="process">
+            <section class="chronicles" id="chronicles">
                 <div class="container">
-                    <div class="process-header">
-                        <h2 class="section-title text-heading glitch-text" data-text="The Process">The Process</h2>
-                        <p class="section-subtitle text-mono">How I build</p>
+                    <div class="chronicles-header">
+                        <h2 class="section-title text-heading glitch-text" data-text="CHRONICLES">CHRONICLES</h2>
+                        <p class="section-subtitle text-mono">Quest Log & Achievements</p>
                     </div>
 
-                    <div class="process-timeline">
-                        <div class="process-line"></div>
-                        
-                        <!-- Step 1 -->
-                        <div class="process-step">
-                            <div class="process-node">
-                                <span class="process-number text-mono">01</span>
+                    <div class="chronicles-timeline">
+                        <div class="chronicles-line"></div>
+
+                        <!-- Experience -->
+                        <div class="chronicles-step">
+                            <div class="chronicles-node">
+                                <span class="chronicles-number text-mono">01</span>
                             </div>
-                            <div class="process-content">
-                                <h3 class="process-title text-heading">Discover & Define</h3>
-                                <p class="process-desc text-body">
-                                    Understanding the core problem. We define the narrative, user requirements, and technical constraints before writing a single line of code.
+                            <div class="chronicles-content">
+                                <h3 class="chronicles-title text-heading">Data Analyst Intern</h3>
+                                <p class="chronicles-desc text-body">
+                                    Worked on real-world datasets: performing data cleaning, exploratory data analysis
+                                    (EDA), and building interactive dashboards in Power BI to drive data-driven decision
+                                    making.
                                 </p>
                             </div>
                         </div>
 
-                        <!-- Step 2 -->
-                        <div class="process-step">
-                            <div class="process-node">
-                                <span class="process-number text-mono">02</span>
+                        <!-- Education -->
+                        <div class="chronicles-step">
+                            <div class="chronicles-node">
+                                <span class="chronicles-number text-mono">02</span>
                             </div>
-                            <div class="process-content">
-                                <h3 class="process-title text-heading">Design Architecture</h3>
-                                <p class="process-desc text-body">
-                                    Crafting the blueprint. This involves system design, database schemas, and UX/UI wireframes, ensuring a solid foundation.
+                            <div class="chronicles-content">
+                                <h3 class="chronicles-title text-heading">BSc Computer Science</h3>
+                                <p class="chronicles-desc text-body">
+                                    Focused on core computational theories, software engineering, and analytical
+                                    problem-solving methodologies.
                                 </p>
                             </div>
                         </div>
 
-                        <!-- Step 3 -->
-                        <div class="process-step">
-                            <div class="process-node">
-                                <span class="process-number text-mono">03</span>
+                        <!-- Certifications -->
+                        <div class="chronicles-step">
+                            <div class="chronicles-node">
+                                <span class="chronicles-number text-mono">03</span>
                             </div>
-                            <div class="process-content">
-                                <h3 class="process-title text-heading">Iterative Development</h3>
-                                <p class="process-desc text-body">
-                                    Building in modules. Implementing features step-by-step with continuous testing, merging robust backend logic with smooth frontend interactions.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Step 4 -->
-                        <div class="process-step">
-                            <div class="process-node">
-                                <span class="process-number text-mono">04</span>
-                            </div>
-                            <div class="process-content">
-                                <h3 class="process-title text-heading">Polish & Deploy</h3>
-                                <p class="process-desc text-body">
-                                    The final 10%. Adding micro-interactions, optimizing performance, ensuring accessibility, and deploying to production.
+                            <div class="chronicles-content">
+                                <h3 class="chronicles-title text-heading">Certifications</h3>
+                                <p class="chronicles-desc text-body">
+                                    • Excel for Analytics (Analytics Vidhya)<br>
+                                    • EDA with Python & GenAI
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+            </section>
 
-            <!-- Module 07: Skills Constellation -->
+            <!-- Module 07: Abilities Panel (Skills) -->
             <section class="skills" id="skills">
-                <div class="container skills-header-container">
-                    <div class="skills-header">
-                        <h2 class="section-title text-heading glitch-text" data-text="Skills Constellation">Skills Constellation</h2>
-                        <p class="section-subtitle text-mono">The tech stack</p>
+                <div class="container skills-inner">
+                    <div class="skills-header section-header-hud">
+                        <h2 class="section-title text-heading">ABILITIES PANEL</h2>
+                        <p class="section-subtitle text-mono">Unlocked potential &amp; masteries</p>
                     </div>
-                    <div class="skills-legend text-mono">
-                        <span class="legend-item"><span class="legend-dot" style="background-color: var(--color-accent);"></span> Core</span>
-                        <span class="legend-item"><span class="legend-dot" style="background-color: var(--color-accent-2);"></span> Supporting</span>
-                        <span class="legend-item"><span class="legend-dot" style="background-color: var(--color-text-muted);"></span> Familiar</span>
-                    </div>
-                </div>
-                
-                <div class="canvas-container" id="skills-canvas-container">
-                    <!-- HTML Canvas for the interactive constellation -->
-                    <canvas id="skills-canvas"></canvas>
-                    
-                    <!-- Fallback/Accessible list (hidden visually, available to screen readers) -->
-                    <div class="sr-only">
-                        <h3>Core Skills</h3>
-                        <ul>
-                            <li>JavaScript/TypeScript</li>
-                            <li>React / Next.js</li>
-                            <li>Node.js</li>
-                            <li>Python</li>
-                        </ul>
-                        <h3>Supporting Skills</h3>
-                        <ul>
-                            <li>HTML / CSS</li>
-                            <li>Three.js / GSAP</li>
-                            <li>SQL / NoSQL</li>
-                            <li>Git / GitHub</li>
-                        </ul>
+
+                    <div class="abilities-grid">
+                        <!-- Category: Programming & Tools -->
+                        <div class="ability-category hud-panel">
+                            <h3 class="ability-cat-title text-heading-alt">PROGRAMMING & TOOLS</h3>
+                            <div class="ability-list">
+                                <div class="ability-item">
+                                    <div class="ability-info">
+                                        <span class="ability-name text-mono">PYTHON / SQL</span>
+                                        <div class="ability-rank">
+                                            <span class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span class="rank-node filled"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ability-item">
+                                    <div class="ability-info">
+                                        <span class="ability-name text-mono">PANDAS / NUMPY</span>
+                                        <div class="ability-rank">
+                                            <span class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span class="rank-node"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ability-item">
+                                    <div class="ability-info">
+                                        <span class="ability-name text-mono">SCIKIT-LEARN / EXCEL</span>
+                                        <div class="ability-rank">
+                                            <span class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span class="rank-node"></span><span
+                                                class="rank-node"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Category: Data Analytics -->
+                        <div class="ability-category hud-panel">
+                            <h3 class="ability-cat-title text-heading-alt">DATA ANALYTICS</h3>
+                            <div class="ability-list">
+                                <div class="ability-item">
+                                    <div class="ability-info">
+                                        <span class="ability-name text-mono">DATA CLEANING / EDA</span>
+                                        <div class="ability-rank">
+                                            <span class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span class="rank-node filled"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ability-item">
+                                    <div class="ability-info">
+                                        <span class="ability-name text-mono">POWER BI / DASHBOARDS</span>
+                                        <div class="ability-rank">
+                                            <span class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span class="rank-node"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ability-item">
+                                    <div class="ability-info">
+                                        <span class="ability-name text-mono">DATA TRANSFORMATION</span>
+                                        <div class="ability-rank">
+                                            <span class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span class="rank-node"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Category: Machine Learning -->
+                        <div class="ability-category hud-panel">
+                            <h3 class="ability-cat-title text-heading-alt">MACHINE LEARNING</h3>
+                            <div class="ability-list">
+                                <div class="ability-item">
+                                    <div class="ability-info">
+                                        <span class="ability-name text-mono">LOGISTIC REG / DECISION TREE</span>
+                                        <div class="ability-rank">
+                                            <span class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span class="rank-node"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ability-item">
+                                    <div class="ability-info">
+                                        <span class="ability-name text-mono">NAIVE BAYES / K-MEANS</span>
+                                        <div class="ability-rank">
+                                            <span class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span class="rank-node"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ability-item">
+                                    <div class="ability-info">
+                                        <span class="ability-name text-mono">MODEL EVALUATION</span>
+                                        <div class="ability-rank">
+                                            <span class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span class="rank-node"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Category: Development -->
+                        <div class="ability-category hud-panel">
+                            <h3 class="ability-cat-title text-heading-alt">DEVELOPMENT</h3>
+                            <div class="ability-list">
+                                <div class="ability-item">
+                                    <div class="ability-info">
+                                        <span class="ability-name text-mono">REACT NATIVE / FLASK</span>
+                                        <div class="ability-rank">
+                                            <span class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span class="rank-node"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ability-item">
+                                    <div class="ability-info">
+                                        <span class="ability-name text-mono">REST APIS / HTTP</span>
+                                        <div class="ability-rank">
+                                            <span class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span class="rank-node"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ability-item">
+                                    <div class="ability-info">
+                                        <span class="ability-name text-mono">MOBILE APP DEV</span>
+                                        <div class="ability-rank">
+                                            <span class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span class="rank-node"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Category: AI Systems -->
+                        <div class="ability-category hud-panel highlighted">
+                            <h3 class="ability-cat-title text-heading-alt">AI SYSTEMS</h3>
+                            <div class="ability-list">
+                                <div class="ability-item">
+                                    <div class="ability-info">
+                                        <span class="ability-name text-mono">FACE RECOGNITION</span>
+                                        <div class="ability-rank">
+                                            <span class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span class="rank-node filled"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ability-item">
+                                    <div class="ability-info">
+                                        <span class="ability-name text-mono">AI-BASED APPLICATIONS</span>
+                                        <div class="ability-rank">
+                                            <span class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span class="rank-node filled"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ability-item">
+                                    <div class="ability-info">
+                                        <span class="ability-name text-mono">GEN AI / LLMS</span>
+                                        <div class="ability-rank">
+                                            <span class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span
+                                                class="rank-node filled"></span><span class="rank-node"></span><span
+                                                class="rank-node"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
+
 
             <!-- Module 08: Featured Case Study -->
             <section class="case-study" id="case-study">
                 <div class="container pb-16">
-                    <h2 class="section-title text-heading glitch-text" data-text="Featured Concept">Featured Concept</h2>
+                    <h2 class="section-title text-heading glitch-text" data-text="Featured Concept">Featured Concept
+                    </h2>
                     <p class="section-subtitle text-mono">Deep Dive</p>
                 </div>
-                
+
                 <div class="cs-container" id="cs-container">
                     <!-- Left: Sticky Visuals -->
                     <div class="cs-visuals" id="cs-visuals">
@@ -351,42 +626,47 @@
                             <div class="cs-img cs-img-4" id="cs-img-4"></div>
                         </div>
                     </div>
-                    
+
                     <!-- Right: Scrolling Narrative -->
                     <div class="cs-content">
                         <!-- Section 1: Introduction -->
                         <div class="cs-section" data-step="1">
-                            <h3 class="cs-title text-heading">Smart Video Player</h3>
-                            <p class="cs-category text-mono">AI Interface Design</p>
+                            <h3 class="cs-title text-heading">Smart AttendX</h3>
+                            <p class="cs-category text-mono">AI Attendance System</p>
                             <p class="cs-text text-body">
-                                The goal was to rethink how users interact with educational video content by integrating AI-driven insights directly into the playback experience without cluttering the interface.
+                                An advanced AI-based face recognition system designed to automate attendance tracking
+                                with precision and real-time synchronization.
                             </p>
                         </div>
-                        
-                        <!-- Section 2: The Problem -->
+
+                        <!-- Section 2: The Logic -->
                         <div class="cs-section" data-step="2">
-                            <h4 class="cs-heading text-mono">01 / The Problem</h4>
+                            <h4 class="cs-heading text-mono">01 / The Logic</h4>
                             <p class="cs-text text-body">
-                                Traditional video players force users to leave the context of the video to search for related concepts, take notes, or understand complex terms. This context switching disrupts the learning flow.
+                                Built with a React Native frontend and a Flask backend, the system utilizes
+                                high-performance face recognition algorithms to identify users in milliseconds, ensuring
+                                a seamless check-in experience.
                             </p>
                         </div>
-                        
-                        <!-- Section 3: The Solution -->
+
+                        <!-- Section 3: The Architecture -->
                         <div class="cs-section" data-step="3">
-                            <h4 class="cs-heading text-mono">02 / The Solution</h4>
+                            <h4 class="cs-heading text-mono">02 / The Architecture</h4>
                             <p class="cs-text text-body">
-                                We designed a contextual sidebar that analyzes the video transcript in real-time, extracting key entities and providing definitions, related links, and automated chapter markers dynamically as the video plays.
+                                The backend handles secure data processing and real-time reports, while the mobile
+                                client provides an intuitive interface for both administrators and employees to monitor
+                                attendance logs.
                             </p>
                         </div>
-                        
-                        <!-- Section 4: The Impact -->
+
+                        <!-- Section 4: The Result -->
                         <div class="cs-section" data-step="4">
-                            <h4 class="cs-heading text-mono">03 / The Impact</h4>
+                            <h4 class="cs-heading text-mono">03 / The Result</h4>
                             <p class="cs-text text-body">
-                                By keeping the cognitive load low and contextual information high, user retention improved by 40%, and the average watch time increased significantly. The interface felt invisible yet omniscient.
+                                Eliminated manual errors and proxy attendance, providing a 100% accurate tracking
+                                solution with zero-latency updates and robust security protocols.
                             </p>
                         </div>
-                    </div>
                     </div>
                 </div>
             </section>
@@ -399,31 +679,35 @@
             <div class="container footer-container">
                 <div class="footer-top">
                     <div class="footer-info">
-                        <h2 class="footer-title text-heading glitch-text" data-text="Ready to Start?">Ready to Start?</h2>
+                        <h2 class="footer-title text-heading glitch-text" data-text="Join the Mission?">Join the
+                            Mission?</h2>
                         <p class="footer-desc text-body">
-                            Whether you have a specific project in mind or just want to explore possibilities, let's talk about building something great.
+                            Passionate about building intelligent systems and extracting value from data. Let's discuss
+                            how we can work together.
                         </p>
                         <div class="footer-contact-links">
-                            <!-- In a real world, this would be an actual mailto or link -->
-                            <a href="#contact" class="btn btn-primary text-mono">Get in Touch</a>
-                            <a href="mailto:yash@example.com" class="text-mono footer-email">yash@example.com</a>
+                            <a href="mailto:yashprajapati989@gmail.com"
+                                class="text-mono footer-email">yashprajapati989@gmail.com</a>
                         </div>
                     </div>
-                    
+
                     <div class="footer-form-wrapper">
                         <!-- Simple conceptual form -->
                         <form class="contact-form" id="contact-form">
                             <div class="form-group">
                                 <label for="name" class="sr-only">Name</label>
-                                <input type="text" id="name" name="name" placeholder="Your Name" required class="form-control text-body">
+                                <input type="text" id="name" name="name" placeholder="Your Name" required
+                                    class="form-control text-body">
                             </div>
                             <div class="form-group">
                                 <label for="email" class="sr-only">Email</label>
-                                <input type="email" id="email" name="email" placeholder="Your Email" required class="form-control text-body">
+                                <input type="email" id="email" name="email" placeholder="Your Email" required
+                                    class="form-control text-body">
                             </div>
                             <div class="form-group">
                                 <label for="message" class="sr-only">Message</label>
-                                <textarea id="message" name="message" placeholder="Tell me about your project..." rows="4" required class="form-control text-body"></textarea>
+                                <textarea id="message" name="message" placeholder="Tell me about your project..."
+                                    rows="4" required class="form-control text-body"></textarea>
                             </div>
                             <button type="submit" class="btn btn-outline text-mono w-full">Send Message</button>
                             <p class="form-status text-xs" id="form-status"></p>
@@ -437,14 +721,32 @@
                     </div>
                     <div class="footer-socials">
                         <!-- Placeholder icons, in real life use SVGs or FontAwesome -->
-                        <a href="https://github.com/YashPrajapati989" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        <a href="https://github.com/YashPrajapati989" target="_blank" rel="noopener noreferrer"
+                            class="social-link" aria-label="GitHub">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                </path>
+                            </svg>
                         </a>
                         <a href="#" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
                         </a>
                         <a href="#" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                                </path>
+                            </svg>
                         </a>
                     </div>
                     <div class="footer-copyright text-xs text-mono text-muted">
@@ -460,10 +762,11 @@
     <script src="assets/js/sections/hero.js"></script>
     <script src="assets/js/sections/about.js"></script>
     <script src="assets/js/sections/work.js"></script>
-    <script src="assets/js/sections/process.js"></script>
+    <script src="assets/js/sections/chronicles.js"></script>
     <script src="assets/js/sections/skills.js"></script>
     <script src="assets/js/sections/case-study.js"></script>
     <script src="assets/js/sections/footer.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
+
 </html>

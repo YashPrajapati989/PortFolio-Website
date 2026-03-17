@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Module 02: Navigation
+   Module 02: Navigation (Game HUD Style)
    ========================================================================== */
 
 .site-header {
@@ -8,18 +8,16 @@
   left: 0;
   width: 100%;
   z-index: 100;
-  padding: var(--space-4) 0;
+  padding: var(--space-6) 0;
   background-color: transparent;
-  transition: transform var(--duration-base) var(--ease-smooth),
-              background-color var(--duration-base) var(--ease-smooth),
-              backdrop-filter var(--duration-base) var(--ease-smooth);
+  transition: all var(--duration-base) var(--ease-smooth);
 }
 
 .site-header.is-scrolled {
-  background-color: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-4) 0;
+  background: linear-gradient(to bottom, rgba(5, 5, 16, 0.95), transparent);
+  border-bottom: 1px solid var(--color-border-dim);
+  backdrop-filter: blur(10px);
 }
 
 .site-header.is-hidden {
@@ -30,16 +28,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .brand {
-  font-size: var(--text-lg);
-  font-weight: 600;
-  color: var(--color-text);
-  z-index: 101; /* Above mobile menu */
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 900;
+  color: var(--color-accent);
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+  letter-spacing: 0.1em;
+  z-index: 101;
+  text-decoration: none;
 }
 
-/* Nav Desktop */
+/* Nav Desktop - HUD Bar Style */
 .main-nav {
   display: none;
 }
@@ -51,37 +54,49 @@
   
   .nav-list {
     display: flex;
-    gap: var(--space-8);
+    gap: var(--space-12);
+    position: relative;
+    padding: var(--space-3) var(--space-8);
+    background: rgba(255, 215, 0, 0.03);
+    border: 1px solid var(--color-border-dim);
+    clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
   }
   
   .nav-link {
-    font-size: var(--text-sm);
+    font-family: var(--font-heading-alt);
+    font-size: var(--text-xs);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.2em;
     color: var(--color-text-muted);
-    transition: color var(--duration-fast) var(--ease-smooth);
+    transition: all var(--duration-fast) var(--ease-smooth);
+    text-decoration: none;
     position: relative;
+    padding-bottom: 2px;
   }
   
+  .nav-link::before {
+    content: '[ ';
+    opacity: 0;
+    transition: opacity 0.2s;
+    color: var(--color-accent);
+  }
+
   .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0%;
-    height: 1px;
-    background-color: var(--color-accent);
-    transition: width var(--duration-fast) var(--ease-smooth);
+    content: ' ]';
+    opacity: 0;
+    transition: opacity 0.2s;
+    color: var(--color-accent);
   }
   
   .nav-link:hover,
   .nav-link.active {
-    color: var(--color-text);
+    color: var(--color-accent);
+    text-shadow: 0 0 10px var(--color-accent);
   }
   
-  .nav-link:hover::after,
-  .nav-link.active::after {
-    width: 100%;
+  .nav-link:hover::before,
+  .nav-link:hover::after {
+    opacity: 1;
   }
 }
 
@@ -95,6 +110,9 @@
   height: 32px;
   z-index: 101;
   cursor: pointer;
+  border: 1px solid var(--color-border-dim);
+  padding: 5px;
+  background: rgba(255, 215, 0, 0.05);
 }
 
 @media (min-width: 768px) {
@@ -105,29 +123,29 @@
 
 .hamburger .line {
   width: 100%;
-  height: 2px;
-  background-color: var(--color-text);
-  transition: transform var(--duration-base) var(--ease-smooth),
-              opacity var(--duration-base) var(--ease-smooth);
+  height: 1px;
+  background-color: var(--color-accent);
+  box-shadow: 0 0 5px var(--color-accent);
+  transition: all var(--duration-base) var(--ease-smooth);
 }
 
 /* Open State for Hamburger */
 .hamburger.is-active .line:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
+  transform: translateY(7px) rotate(45deg);
 }
 
 .hamburger.is-active .line:nth-child(2) {
   transform: translateY(-0px) rotate(-45deg);
 }
 
-/* Mobile Menu overlay */
+/* Mobile Menu overlay (Full Screen Cinematic Search) */
 .mobile-menu {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: var(--color-bg);
+  background-color: rgba(5, 5, 16, 0.98);
   z-index: 99;
   display: flex;
   flex-direction: column;
@@ -135,7 +153,7 @@
   align-items: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity var(--duration-base) var(--ease-smooth);
+  transition: opacity 0.5s var(--ease-smooth);
 }
 
 .mobile-menu.is-active {
@@ -148,25 +166,33 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-8);
+  list-style: none;
 }
 
 .mobile-nav-link {
   font-family: var(--font-heading);
-  font-size: var(--text-3xl);
+  font-size: var(--text-4xl);
   color: var(--color-text);
+  text-decoration: none;
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity var(--duration-base) var(--ease-smooth),
-              transform var(--duration-base) var(--ease-smooth);
+  transform: scale(0.8) skewX(-10deg);
+  transition: all 0.4s var(--ease-smooth);
 }
 
 .mobile-menu.is-active .mobile-nav-link {
   opacity: 1;
-  transform: translateY(0);
+  transform: scale(1) skewX(0);
+}
+
+.mobile-nav-link:hover {
+  color: var(--color-accent);
+  text-shadow: 0 0 30px var(--color-accent);
+  letter-spacing: 0.1em;
 }
 
 /* Staggered entrance for mobile links */
 .mobile-menu.is-active .mobile-nav-list li:nth-child(1) .mobile-nav-link { transition-delay: 100ms; }
-.mobile-menu.is-active .mobile-nav-list li:nth-child(2) .mobile-nav-link { transition-delay: 150ms; }
-.mobile-menu.is-active .mobile-nav-list li:nth-child(3) .mobile-nav-link { transition-delay: 200ms; }
-.mobile-menu.is-active .mobile-nav-list li:nth-child(4) .mobile-nav-link { transition-delay: 250ms; }
+.mobile-menu.is-active .mobile-nav-list li:nth-child(2) .mobile-nav-link { transition-delay: 200ms; }
+.mobile-menu.is-active .mobile-nav-list li:nth-child(3) .mobile-nav-link { transition-delay: 300ms; }
+.mobile-menu.is-active .mobile-nav-list li:nth-child(4) .mobile-nav-link { transition-delay: 400ms; }
+

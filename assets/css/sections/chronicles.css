@@ -1,19 +1,19 @@
 /* ==========================================================================
-   Module 06: The Process
+   Module 06: The Chronicles
    ========================================================================== */
 
-.process {
+.chronicles {
   padding: var(--space-16) 0;
   background-color: var(--color-surface); /* Slightly lighter background than bg */
   min-height: 100vh;
 }
 
-.process-header {
+.chronicles-header {
   margin-bottom: var(--space-12);
   text-align: center;
 }
 
-.process-timeline {
+.chronicles-timeline {
   position: relative;
   max-width: 800px;
   margin: 0 auto;
@@ -21,7 +21,7 @@
 }
 
 /* Vertical Line */
-.process-line {
+.chronicles-line {
   position: absolute;
   top: 0;
   left: 24px; /* Center of the node (48px / 2) */
@@ -33,12 +33,12 @@
 }
 
 @media (min-width: 768px) {
-  .process-line {
+  .chronicles-line {
     left: 50%;
   }
 }
 
-.process-step {
+.chronicles-step {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -49,12 +49,12 @@
   transform: translateY(20px);
 }
 
-.process-step:last-child {
+.chronicles-step:last-child {
   margin-bottom: 0;
 }
 
 @media (min-width: 768px) {
-  .process-step {
+  .chronicles-step {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -62,13 +62,13 @@
   }
   
   /* Alternating layout on desktop */
-  .process-step:nth-child(even) {
+  .chronicles-step:nth-child(even) {
     flex-direction: row-reverse;
   }
 }
 
 /* The circular node */
-.process-node {
+.chronicles-node {
   position: absolute;
   left: 0;
   top: 0;
@@ -86,19 +86,19 @@
 }
 
 @media (min-width: 768px) {
-  .process-node {
+  .chronicles-node {
     left: 50%;
     transform: translateX(-50%);
   }
 }
 
-.process-number {
+.chronicles-number {
   font-size: var(--text-sm);
   color: var(--color-text-muted);
   transition: color var(--duration-base) var(--ease-smooth);
 }
 
-.process-content {
+.chronicles-content {
   background-color: var(--color-bg);
   padding: var(--space-6);
   border-radius: 4px;
@@ -110,32 +110,32 @@
 }
 
 @media (min-width: 768px) {
-  .process-content {
+  .chronicles-content {
     width: calc(50% - 48px); /* Take up half minus space for center line/node */
   }
 }
 
-.process-title {
+.chronicles-title {
   font-size: var(--text-xl);
   margin-bottom: var(--space-3);
   color: var(--color-text);
 }
 
-.process-desc {
+.chronicles-desc {
   color: var(--color-text-muted);
 }
 
 /* Hover / Active States triggered by JS */
-.process-step.is-active .process-node {
+.chronicles-step.is-active .chronicles-node {
   border-color: var(--color-accent);
   box-shadow: 0 0 15px rgba(232, 201, 122, 0.3);
 }
 
-.process-step.is-active .process-number {
+.chronicles-step.is-active .chronicles-number {
   color: var(--color-accent);
 }
 
-.process-step.is-active .process-content {
+.chronicles-step.is-active .chronicles-content {
   border-color: var(--color-border);
   transform: translateY(-5px);
 }

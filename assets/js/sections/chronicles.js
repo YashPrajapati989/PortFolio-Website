@@ -1,7 +1,7 @@
 // Module 06: The Process (Scroll Animations)
 
-function initProcess() {
-  const steps = document.querySelectorAll('.process-step');
+function initChronicles() {
+  const steps = document.querySelectorAll('.chronicles-step');
   
   if (steps.length === 0 || typeof ScrollTrigger === 'undefined') return;
 
@@ -13,7 +13,7 @@ function initProcess() {
     stagger: 0.2,
     ease: "power2.out",
     scrollTrigger: {
-      trigger: ".process-timeline",
+      trigger: ".chronicles-timeline",
       start: "top 70%"
     }
   });
@@ -30,7 +30,7 @@ function initProcess() {
   });
   
   // Optional: Animate the vertical line drawing down
-  const line = document.querySelector('.process-line');
+  const line = document.querySelector('.chronicles-line');
   if (line) {
     gsap.fromTo(line, 
       { scaleY: 0, transformOrigin: "top center" },
@@ -38,7 +38,7 @@ function initProcess() {
         scaleY: 1,
         ease: "none",
         scrollTrigger: {
-          trigger: ".process-timeline",
+          trigger: ".chronicles-timeline",
           start: "top 50%",
           end: "bottom 50%",
           scrub: true
@@ -49,4 +49,4 @@ function initProcess() {
 }
 
 // Export initialization fn
-window.animations.initProcess = initProcess;
+window.animations.initChronicles = initChronicles;

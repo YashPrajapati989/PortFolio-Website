@@ -1,138 +1,206 @@
 /* ==========================================================================
-   Module 04: Origin Story (Horizontal Timeline)
+   Module 04: Character Sheet (About)
    ========================================================================== */
 
 .about {
   position: relative;
+  padding: var(--space-24) 0;
   background-color: var(--color-bg);
-  overflow: hidden; /* Important for horizontal scroll */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
-/* We need extra padding top and bottom to give room for the sticky effect */
-.about-header {
-  padding-top: var(--space-16);
-  padding-bottom: var(--space-8);
+.about-inner {
+  position: relative;
+  z-index: 2;
 }
 
-.section-title {
-  font-size: var(--text-3xl);
-  margin-bottom: var(--space-2);
+.section-header-hud {
+  margin-bottom: var(--space-16);
+  border-left: 4px solid var(--color-accent);
+  padding-left: var(--space-6);
 }
 
-.section-subtitle {
+.char-sheet-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+@media (min-width: 992px) {
+  .char-sheet-grid {
+    grid-template-columns: 400px 1fr;
+    gap: var(--space-16);
+  }
+}
+
+/* Portrait Column */
+.char-portrait-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.hex-frame-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--space-4);
+}
+
+.hex-frame {
+  position: relative;
+  width: 250px;
+  height: 280px;
+  background-color: var(--color-border-dim);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  padding: 2px; /* Border thickness */
+  transition: transform 0.5s var(--ease-smooth);
+}
+
+.hex-inner {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-bg);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  overflow: hidden;
+  position: relative;
+}
+
+.char-portrait {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(0.5) contrast(1.1);
+  transition: filter 0.5s ease;
+}
+
+.hex-frame:hover .char-portrait {
+  filter: grayscale(0);
+}
+
+.hex-border-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 0 30px var(--color-accent);
+  pointer-events: none;
+  opacity: 0.3;
+  animation: hexGlow 3s infinite alternate;
+}
+
+@keyframes hexGlow {
+  0% { opacity: 0.2; }
+  100% { opacity: 0.6; }
+}
+
+/* Stats Panel */
+.char-stats-panel {
+  background: rgba(255, 215, 0, 0.03);
+  border: 1px solid var(--color-border-dim);
+  padding: var(--space-6);
+  backdrop-filter: blur(5px);
+}
+
+.stats-title {
   font-size: var(--text-sm);
+  letter-spacing: 0.2em;
   color: var(--color-accent);
+  margin-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-border-dim);
+  padding-bottom: var(--space-2);
+}
+
+.stat-row {
+  margin-bottom: var(--space-4);
+}
+
+.stat-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-1);
+}
+
+.stat-bar-container {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 215, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-2));
+  box-shadow: 0 0 10px var(--color-accent);
+  width: 0%; /* Animated via JS */
+  transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stat-value {
+  display: block;
+  text-align: right;
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+  margin-top: 2px;
+}
+
+/* Bio Column */
+.hud-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-dim);
+  padding: var(--space-12);
+  position: relative;
+  backdrop-filter: blur(10px);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%);
+}
+
+.hud-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border-top: 2px solid var(--color-accent);
+  border-left: 2px solid var(--color-accent);
+}
+
+.lore-title {
+  font-size: var(--text-lg);
+  color: var(--color-text);
+  margin-bottom: var(--space-6);
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
 
-@media (min-width: 768px) {
-  .section-title {
-    font-size: var(--text-4xl);
-  }
-}
-
-/* Horizontal Scroll Container */
-.timeline-container {
-  position: relative;
-  height: 100vh; /* Fixed height for the sticky container */
-  width: 100%;
-}
-
-.timeline-wrapper {
-  display: flex;
-  height: 100%;
-  width: max-content; /* Critical: allows it to grow horizontally */
-  padding: 0 var(--space-8);
-  align-items: center;
-}
-
-.timeline-item {
-  display: flex;
-  flex-direction: column;
-  width: 85vw; /* Slightly less than viewport to show the next item */
-  max-width: 800px;
-  padding-right: var(--space-8);
-  flex-shrink: 0;
-}
-
-@media (min-width: 768px) {
-  .timeline-item {
-    flex-direction: row;
-    align-items: center;
-    gap: var(--space-12);
-    width: 70vw;
-  }
-}
-
-.timeline-content {
-  flex: 1;
-  margin-bottom: var(--space-8);
-}
-
-@media (min-width: 768px) {
-  .timeline-content {
-    margin-bottom: 0;
-  }
-}
-
-.timeline-year {
-  display: block;
-  font-size: var(--text-xs);
-  color: var(--color-accent-2);
-  margin-bottom: var(--space-4);
-}
-
-.timeline-title {
-  font-size: var(--text-2xl);
-  margin-bottom: var(--space-4);
-}
-
-.timeline-text {
+.lore-content p {
+  margin-bottom: var(--space-6);
   font-size: var(--text-base);
+  line-height: 1.8;
   color: var(--color-text-muted);
-  max-width: 400px;
 }
 
-.timeline-visual {
-  flex: 1;
-  width: 100%;
+.text-accent { color: var(--color-accent); font-weight: 600; }
+.text-accent-2 { color: var(--color-accent-2); }
+
+.char-class-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
 }
 
-/* Parallax Image Wrapper */
-.parallax-img-wrapper {
-  width: 100%;
-  aspect-ratio: 4/3;
-  overflow: hidden;
-  position: relative;
-  border-radius: 4px;
-}
-
-.parallax-img {
-  position: absolute;
-  top: -10%; /* Extra space for parallax vertical movement */
-  left: -10%; /* Extra space for parallax horizontal movement */
-  width: 120%; /* Larger than container */
-  height: 120%; /* Larger than container */
-  background-size: cover;
-  background-position: center;
-  /* Visual placeholder styles */
-  border: 1px solid var(--color-border);
-}
-
-/* Global Progress Bar */
-.timeline-progress-container {
-  position: absolute;
-  bottom: var(--space-8);
-  left: var(--space-8);
-  right: var(--space-8);
-  height: 2px;
-  background-color: var(--color-surface-2);
-}
-
-.timeline-progress-bar {
-  height: 100%;
-  width: 0%;
-  background-color: var(--color-accent);
-  transform-origin: left;
+.tag {
+  font-size: var(--text-xs);
+  padding: var(--space-1) var(--space-3);
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid var(--color-border-dim);
+  color: var(--color-accent);
 }

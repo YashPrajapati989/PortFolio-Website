@@ -1,61 +1,60 @@
-// Module 04: Origin Story (Horizontal Scroll & Parallax)
+// Module 04: Character Sheet (About) Animations
 
 function initAbout() {
-  const timelineContainer = document.getElementById('timeline-container');
-  const timelineWrapper = document.getElementById('timeline-wrapper');
-  const progressBar = document.getElementById('timeline-progress');
+  const aboutSection = document.querySelector('.about');
+  if (!aboutSection) return;
+
+  const statBars = document.querySelectorAll('.stat-bar');
   
-  if (!timelineContainer || !timelineWrapper) return;
-
-  // Calculate the total scroll distance (width of wrapper minus viewport width)
-  const getScrollAmount = () => {
-    let wrapperWidth = timelineWrapper.scrollWidth;
-    return -(wrapperWidth - window.innerWidth);
-  };
-
-  // 1. Horizontal Scroll Tween
-  const tween = gsap.to(timelineWrapper, {
-    x: getScrollAmount,
-    ease: "none"
-  });
-
-  // Create ScrollTrigger to pin the container and scrub the animation
-  ScrollTrigger.create({
-    trigger: timelineContainer,
-    start: "top top",
-    end: () => `+=${getScrollAmount() * -1}`, // Scroll for the length of the wrapper
-    pin: true,
-    animation: tween,
-    scrub: 1, // Smooth scrubbing
-    invalidateOnRefresh: true, // Recalculate values on resize
-    onUpdate: (self) => {
-      // Update progress bar
-      if (progressBar) {
-        gsap.set(progressBar, { width: `${self.progress * 100}%` });
+  // Animate stat bars when the section comes into view
+  gsap.fromTo(statBars, 
+    { width: "0%" }, 
+    {
+      width: (i, target) => {
+        // Look up the desired width from the inline style or data attribute
+        return target.style.width; 
+      },
+      duration: 1.5,
+      ease: "power4.out",
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: aboutSection,
+        start: "top 70%", // Start animation when top of section is 70% down the viewport
+        toggleActions: "play none none none"
       }
+    }
+  );
+
+  // Subtle hover effect for the hex frame
+  const hexFrame = document.querySelector('.hex-frame');
+  if (hexFrame) {
+    hexFrame.addEventListener('mouseenter', () => {
+      gsap.to(hexFrame, { scale: 1.05, duration: 0.5, ease: "power2.out" });
+    });
+    hexFrame.addEventListener('mouseleave', () => {
+      gsap.to(hexFrame, { scale: 1, duration: 0.5, ease: "power2.out" });
+    });
+  }
+
+  // Fade in the lore content panels
+  gsap.from('.hud-panel', {
+    opacity: 0,
+    x: 50,
+    duration: 1,
+    scrollTrigger: {
+        trigger: '.char-bio-col',
+        start: "top 80%"
     }
   });
 
-  // 2. Parallax effects on images inside the horizontal scroll
-  const items = document.querySelectorAll('.timeline-item');
-  
-  items.forEach(item => {
-    const img = item.querySelector('.parallax-img');
-    if (!img) return;
-    
-    // As the container scrolls horizontally, move the image slightly in the opposite direction
-    // We attach this to the same scroll trigger progress by using a container query
-    gsap.to(img, {
-      xPercent: 15, // Move image 15% right as it scrolls left
-      ease: "none",
-      scrollTrigger: {
-        trigger: item,
-        containerAnimation: tween, // Critical: this ties it to the horizontal scroll timeline
-        start: "left right", // When left edge of item hits right edge of viewport
-        end: "right left",   // When right edge of item hits left edge of viewport
-        scrub: true
-      }
-    });
+  gsap.from('.char-stats-panel', {
+    opacity: 0,
+    x: -50,
+    duration: 1,
+    scrollTrigger: {
+        trigger: '.char-portrait-col',
+        start: "top 80%"
+    }
   });
 }
 

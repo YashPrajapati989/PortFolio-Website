@@ -14,7 +14,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+  transition: opacity 1s var(--ease-smooth), visibility 1s var(--ease-smooth);
+  padding: var(--space-8);
 }
 
 .preloader.is-hidden {
@@ -25,37 +26,65 @@
 .preloader-text {
   color: var(--color-accent);
   margin-bottom: var(--space-4);
+  font-family: var(--font-heading-alt);
   font-size: var(--text-sm);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-  animation: pulse 1.5s infinite;
+  text-shadow: 0 0 10px var(--color-accent);
+  text-align: center;
+}
+
+.preloader-bar-container {
+  width: 100%;
+  max-width: 400px;
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border-dim);
+  padding: 2px;
+  position: relative;
+  overflow: visible;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .preloader-bar {
-  width: 200px;
-  height: 2px;
-  background-color: var(--color-border);
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-2));
+  box-shadow: 0 0 15px var(--color-accent);
+  transition: width 0.1s linear;
   position: relative;
-  overflow: hidden;
 }
 
 .preloader-bar::after {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
+  width: 10px;
   height: 100%;
-  width: 30%;
-  background-color: var(--color-accent-2);
-  animation: loadSlide 1s ease-in-out infinite alternate;
+  background: #fff;
+  filter: blur(4px);
+  opacity: 0.5;
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
+.preloader-percentage {
+  margin-top: var(--space-4);
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  letter-spacing: 0.2em;
 }
 
-@keyframes loadSlide {
-  0% { left: 0; width: 30%; }
-  100% { left: 70%; width: 30%; }
+/* Flicker effect for the whole site on reveal */
+@keyframes screenFlicker {
+  0% { opacity: 0.9; }
+  5% { opacity: 1; }
+  10% { opacity: 0.8; }
+  15% { opacity: 1; }
+  25% { opacity: 0.9; }
+  30% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+.flicker-reveal {
+  animation: screenFlicker 0.4s ease-out forwards;
 }

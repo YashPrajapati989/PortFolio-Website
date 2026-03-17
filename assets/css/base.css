@@ -1,19 +1,20 @@
 :root {
-  /* Colors - Redesign Phase 2 (Video Game HUD / Cyberpunk) */
-  --color-bg: #050510; /* Deep Void */
-  --color-surface: rgba(10, 15, 30, 0.7); /* Hacker panel */
-  --color-surface-2: rgba(0, 240, 255, 0.05); /* Very light cyan wash */
-  --color-border: #00F0FF; /* Neon Cyan */
-  --color-border-dim: rgba(0, 240, 255, 0.3);
-  --color-text: #E0FFFF; /* Ice white */
-  --color-text-muted: #5588A3; /* Muted cyan-grey */
-  --color-accent: #00F0FF; /* Main Neon Cyan */
-  --color-accent-2: #FF003C; /* Neon Magenta */
-  --color-success: #00FF41; /* Terminal Green */
+  /* Colors - Dark Fantasy Game Engine UI */
+  --color-bg: #050510; /* Deep cosmic black */
+  --color-surface: rgba(10, 15, 30, 0.7); /* Glassmorphism panel base */
+  --color-surface-2: rgba(255, 215, 0, 0.05); /* Gold wash */
+  --color-border: #FFD700; /* Electric gold */
+  --color-border-dim: rgba(255, 215, 0, 0.3);
+  --color-text: #EEE8D5; /* Pale parchment / Off-white */
+  --color-text-muted: #A09B8C; /* Muted parchment */
+  --color-accent: #FFD700; /* Main Electric Gold */
+  --color-accent-2: #00CFFF; /* Ice Blue (Hover glows) */
+  --color-danger: #CC1A1A; /* Blood crimson */
 
   /* Typography */
-  --font-heading: 'Rajdhani', sans-serif;
-  --font-body: 'Chakra Petch', sans-serif;
+  --font-heading: 'Cinzel Decorative', cursive;
+  --font-heading-alt: 'Orbitron', sans-serif;
+  --font-body: 'Rajdhani', sans-serif;
   --font-mono: 'Share Tech Mono', monospace;
 
   /* Spacing */
@@ -46,7 +47,12 @@
   --transition-normal: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 200ms;
   --duration-base: 300ms;
+  --duration-slow: 600ms;
+
+  /* Spacing extras */
+  --space-5: 1.25rem;
 }
 
 /* Base Reset & Styles */
@@ -69,12 +75,111 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Scanline effect over entire body */
-  background-image: linear-gradient(
-    rgba(0, 240, 255, 0.03) 1px, 
-    transparent 1px
-  );
-  background-size: 100% 4px;
+  background-color: var(--color-bg);
+  cursor: none; /* Hide default cursor */
+}
+
+/* Global Overlay Layer */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  background-size: 100% 4px, 3px 100%;
+  pointer-events: none;
+  z-index: 10000;
+  opacity: 0.15;
+}
+
+/* Grainy Texture */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("https://grainy-gradients.vercel.app/noise.svg");
+  pointer-events: none;
+  z-index: 10001;
+  opacity: 0.1;
+  mix-blend-mode: overlay;
+}
+
+/* Custom Cursor */
+.custom-cursor {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-accent-2);
+  position: fixed;
+  pointer-events: none;
+  z-index: 10002;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px rgba(0, 207, 255, 0.2);
+  animation: cursor-rotate 10s linear infinite;
+  clip-path: polygon(0% 20%, 20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%);
+}
+
+.custom-cursor::before,
+.custom-cursor::after {
+  content: '';
+  position: absolute;
+  background-color: var(--color-accent-2);
+  opacity: 0.5;
+}
+
+.custom-cursor::before {
+  width: 1px;
+  height: 10px;
+  top: -5px;
+}
+
+.custom-cursor::after {
+  width: 10px;
+  height: 1px;
+  left: -5px;
+}
+
+/* Extra spikes for mechanical look */
+.custom-cursor-dot {
+  width: 4px;
+  height: 4px;
+  background-color: var(--color-accent);
+  position: fixed;
+  pointer-events: none;
+  z-index: 10003;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--color-accent);
+}
+
+.custom-cursor-glow {
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(0, 207, 255, 0.1) 0%, transparent 70%);
+  position: fixed;
+  pointer-events: none;
+  z-index: 10001;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+}
+
+@keyframes cursor-rotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Large Dramatic Typography */
+h1, h2, h3 {
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
 }
 
 /* Custom Scrollbar */
@@ -95,6 +200,7 @@ body {
 
 /* Typography Utility Classes */
 .text-heading { font-family: var(--font-heading); font-style: normal; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+.text-heading-alt { font-family: var(--font-heading-alt); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
 .text-body { font-family: var(--font-body); }
 .text-mono { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; }
 .text-xs { font-size: var(--text-xs); }
@@ -108,3 +214,47 @@ body {
 .text-6xl { font-size: var(--text-6xl); }
 .text-7xl { font-size: var(--text-7xl); }
 .text-muted { color: var(--color-text-muted); }
+.text-accent { color: var(--color-accent); }
+.text-accent-2 { color: var(--color-accent-2); }
+
+/* Section Typography Globals */
+.section-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.section-subtitle {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: var(--text-5xl);
+  }
+}
+
+/* Layout Utilities */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 var(--space-12);
+  }
+}
+
+.w-full { width: 100%; }
+.pb-16 { padding-bottom: var(--space-16); }
+

@@ -1,38 +1,38 @@
 // Main initialization logic
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Portfolio initialized');
-  // Initialize GSAP plugins if needed
+  
+  // Initialize GSAP plugins
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
   }
 
+  // Initialize Global Animations (Cursor, etc.)
+  if (window.animations && typeof window.animations.init === 'function') {
+    window.animations.init();
+  }
+
   initNavigation();
   
-  // Hide preloader once everything is loaded
-  window.addEventListener('load', () => {
+  // Cinematic Preloader Sequence
+  if (window.animations && typeof window.animations.initPreloader === 'function') {
+    window.animations.initPreloader(() => {
+      // Callback after preloader finishes
+      startSiteAnimations();
+    });
+  } else {
+    // Fallback if animations object isn't ready
     const preloader = document.getElementById('preloader');
-    if (preloader) {
-      setTimeout(() => {
-        preloader.classList.add('is-hidden');
-        // Let body scroll again
-        document.body.style.overflowY = 'auto';
-        
-        // Now trigger the hero section initialization
-        if (typeof window.animations.initHero === 'function') {
-          window.animations.initHero();
-        }
-      }, 500); // Small artificial delay to ensure smooth transition
-    } else {
-        if (typeof window.animations.initHero === 'function') {
-          window.animations.initHero();
-        }
-    }
-  });
+    if (preloader) preloader.style.display = 'none';
+    document.body.style.overflowY = 'auto';
+    startSiteAnimations();
+  }
+});
 
-  // Remove the immediate initHero call since we do it after load now
-  // if (typeof window.animations.initHero === 'function') {
-  //   window.animations.initHero();
-  // }
+function startSiteAnimations() {
+  if (typeof window.animations.initHero === 'function') {
+    window.animations.initHero();
+  }
 
   if (typeof window.animations.initAbout === 'function') {
     window.animations.initAbout();
@@ -42,8 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.animations.initWork();
   }
 
-  if (typeof window.animations.initProcess === 'function') {
-    window.animations.initProcess();
+  if (typeof window.animations.initChronicles === 'function') {
+    window.animations.initChronicles();
   }
 
   if (typeof window.animations.initSkills === 'function') {
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof window.animations.initFooter === 'function') {
     window.animations.initFooter();
   }
-});
+}
 
 function initNavigation() {
   const header = document.getElementById('site-header');

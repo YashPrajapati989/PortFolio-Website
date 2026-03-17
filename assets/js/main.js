@@ -7,6 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initNavigation();
+  
+  if (typeof window.animations.initHero === 'function') {
+    window.animations.initHero();
+  }
 });
 
 function initNavigation() {

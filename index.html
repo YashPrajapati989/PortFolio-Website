@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/sections/nav.css">
+    <link rel="stylesheet" href="assets/css/sections/hero.css">
 </head>
 <body>
     <!-- Mobile Menu Overlay -->
@@ -51,13 +52,35 @@
             </div>
         </header>
         
-        <!-- Content placeholder -->
+        <!-- Module 03: Hero Section -->
+        <section class="hero" id="hero">
+            <canvas id="hero-canvas" class="hero-canvas"></canvas>
+            <div class="container hero-inner">
+                <div class="hero-content">
+                    <p class="hero-label text-mono">Hello, I am Yash Prajapati</p>
+                    <h1 class="hero-title text-heading">
+                        <span class="title-line">Crafting</span>
+                        <span class="title-line">Digital</span>
+                        <span class="title-line">Experiences</span>
+                    </h1>
+                    <p class="hero-tagline text-body" id="hero-typewriter"></p>
+                </div>
+                
+                <div class="scroll-indicator">
+                    <span class="scroll-text text-mono">Scroll to explore</span>
+                    <div class="scroll-line"></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Content placeholder for remaining sections -->
         <main id="main-content">
         </main>
     </div>
 
     <!-- Scripts -->
     <script src="assets/js/animations.js"></script>
+    <script src="assets/js/sections/hero.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

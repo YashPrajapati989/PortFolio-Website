@@ -54,10 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.animations.initCaseStudy();
   }
 
-  if (typeof window.animations.initVoices === 'function') {
-    window.animations.initVoices();
-  }
-
   if (typeof window.animations.initFooter === 'function') {
     window.animations.initFooter();
   }

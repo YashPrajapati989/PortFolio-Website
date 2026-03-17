@@ -1,19 +1,20 @@
 :root {
-  /* Colors - Redesign (Cinematic Museum) */
-  --color-bg: #0A0A0A;
-  --color-surface: rgba(26, 26, 26, 0.7); /* Base for glassmorphism */
-  --color-surface-2: rgba(43, 43, 43, 0.5); /* Lighter glass */
-  --color-border: #C5A059; /* Gold borders */
-  --color-border-dim: rgba(197, 160, 89, 0.3); /* Dimmed gold */
-  --color-text: #F3EFE9;
-  --color-text-muted: #A0A0A0;
-  --color-accent: #C5A059; /* Gold */
-  --color-accent-2: #C64B3E; /* Terracotta Red */
+  /* Colors - Redesign Phase 2 (Video Game HUD / Cyberpunk) */
+  --color-bg: #050510; /* Deep Void */
+  --color-surface: rgba(10, 15, 30, 0.7); /* Hacker panel */
+  --color-surface-2: rgba(0, 240, 255, 0.05); /* Very light cyan wash */
+  --color-border: #00F0FF; /* Neon Cyan */
+  --color-border-dim: rgba(0, 240, 255, 0.3);
+  --color-text: #E0FFFF; /* Ice white */
+  --color-text-muted: #5588A3; /* Muted cyan-grey */
+  --color-accent: #00F0FF; /* Main Neon Cyan */
+  --color-accent-2: #FF003C; /* Neon Magenta */
+  --color-success: #00FF41; /* Terminal Green */
 
   /* Typography */
-  --font-heading: 'Playfair Display', serif;
-  --font-body: 'Lora', serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-heading: 'Rajdhani', sans-serif;
+  --font-body: 'Chakra Petch', sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
 
   /* Spacing */
   --space-1: 0.25rem;
@@ -41,11 +42,11 @@
   --text-7xl: 6rem;
 
   /* Transitions */
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.4s ease;
-  --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.15s ease-out;
+  --transition-normal: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-  --duration-base: 400ms;
+  --duration-base: 300ms;
 }
 
 /* Base Reset & Styles */
@@ -59,7 +60,7 @@ html {
   font-family: var(--font-body);
   color: var(--color-text);
   background-color: var(--color-bg);
-  line-height: 1.6;
+  line-height: 1.5;
   font-size: 16px;
   scroll-behavior: smooth;
 }
@@ -68,25 +69,32 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Scanline effect over entire body */
+  background-image: linear-gradient(
+    rgba(0, 240, 255, 0.03) 1px, 
+    transparent 1px
+  );
+  background-size: 100% 4px;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
   background: var(--color-bg);
+  border-left: 1px solid var(--color-border-dim);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-border-dim);
-  border-radius: 5px;
+  background: var(--color-accent);
+  border-radius: 0;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent);
+  background: var(--color-accent-2);
 }
 
 /* Typography Utility Classes */
-.text-heading { font-family: var(--font-heading); font-style: italic; letter-spacing: 0.05em; }
+.text-heading { font-family: var(--font-heading); font-style: normal; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
 .text-body { font-family: var(--font-body); }
 .text-mono { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; }
 .text-xs { font-size: var(--text-xs); }

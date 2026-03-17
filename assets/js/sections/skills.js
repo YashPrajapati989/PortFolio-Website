@@ -1,4 +1,4 @@
-// Module 07: Skills Constellation (HTML Canvas)
+// Module 07: Skills Constellation (HTML Canvas) - Sci-Fi HUD
 
 function initSkills() {
   const canvas = document.getElementById('skills-canvas');
@@ -24,28 +24,28 @@ function initSkills() {
 
   let { width, height } = resizeCanvas();
 
-  // Skill Data
+  // Skill Data - HUD Categories
   const categories = {
-    core: { color: '#C5A059', size: 6 },     // Gold
-    supporting: { color: '#C64B3E', size: 4 }, // Terracotta
-    familiar: { color: '#A0A0A0', size: 2.5 }  // Muted
+    core: { color: '#00F0FF', size: 6, pulse: true },        // Neon Cyan
+    supporting: { color: '#FF003C', size: 4, pulse: false }, // Neon Magenta
+    familiar: { color: '#00FF41', size: 2.5, pulse: false }  // Terminal Green
   };
 
   const skillsData = [
-    { name: "JavaScript", category: "core", x: 0.5, y: 0.5 },
-    { name: "React / Next.js", category: "core", x: 0.3, y: 0.4 },
-    { name: "Node.js", category: "core", x: 0.7, y: 0.4 },
-    { name: "Python", category: "core", x: 0.5, y: 0.7 },
+    { name: "SYS::AI_Video_Pipeline", category: "core", x: 0.5, y: 0.5 },
+    { name: "SYS::Node_Backend", category: "core", x: 0.3, y: 0.4 },
+    { name: "LANG::Python", category: "core", x: 0.7, y: 0.4 },
+    { name: "MOD::TTS_SSML", category: "core", x: 0.5, y: 0.7 },
     
-    { name: "HTML/CSS", category: "supporting", x: 0.2, y: 0.6 },
-    { name: "Three.js/GSAP", category: "supporting", x: 0.4, y: 0.2 },
-    { name: "MongoDB", category: "supporting", x: 0.8, y: 0.6 },
-    { name: "Git", category: "supporting", x: 0.6, y: 0.2 },
+    { name: "MOD::Audio_Demucs", category: "supporting", x: 0.2, y: 0.6 },
+    { name: "UI::React_Frontend", category: "supporting", x: 0.4, y: 0.2 },
+    { name: "DB::Migrations", category: "supporting", x: 0.8, y: 0.6 },
+    { name: "SYS::Architecture", category: "supporting", x: 0.6, y: 0.2 },
     
-    { name: "UI/UX", category: "familiar", x: 0.1, y: 0.4 },
-    { name: "Docker", category: "familiar", x: 0.9, y: 0.4 },
-    { name: "AWS", category: "familiar", x: 0.7, y: 0.8 },
-    { name: "C++", category: "familiar", x: 0.3, y: 0.8 }
+    { name: "UI::Custom_Video_Player", category: "familiar", x: 0.1, y: 0.4 },
+    { name: "ENV::Docker", category: "familiar", x: 0.9, y: 0.4 },
+    { name: "API::Gemini_Integration", category: "familiar", x: 0.7, y: 0.8 },
+    { name: "LANG::C++", category: "familiar", x: 0.3, y: 0.8 }
   ];
 
   // Map relative coordinates to absolute canvas pixels
@@ -58,10 +58,11 @@ function initSkills() {
         baseY: skill.y * height,
         currentX: skill.x * width,
         currentY: skill.y * height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
+        vx: (Math.random() - 0.5) * 1.5,
+        vy: (Math.random() - 0.5) * 1.5,
         targetRadius: categories[skill.category].size,
-        currentRadius: 0 // For intro animation
+        currentRadius: 0, // For intro animation
+        pulsePhase: Math.random() * Math.PI * 2
       };
     });
   }
@@ -105,8 +106,10 @@ function initSkills() {
   }
 
   // Animation Loop
+  let time = 0;
   function animate() {
     requestAnimationFrame(animate);
+    time += 0.05;
     
     ctx.clearRect(0, 0, width, height);
 
@@ -119,24 +122,24 @@ function initSkills() {
       // Keep near base position
       const dxDist = node.baseX - node.currentX;
       const dyDist = node.baseY - node.currentY;
-      node.currentX += dxDist * 0.01;
-      node.currentY += dyDist * 0.01;
+      node.currentX += dxDist * 0.02;
+      node.currentY += dyDist * 0.02;
 
-      // Mouse repulsion
+      // Mouse repulsion - stronger for HUD
       const dxM = mouse.x - node.currentX;
       const dyM = mouse.y - node.currentY;
       const distM = Math.sqrt(dxM * dxM + dyM * dyM);
       
       if (distM < mouse.radius) {
         const force = (mouse.radius - distM) / mouse.radius;
-        const pushX = (dxM / distM) * force * 5;
-        const pushY = (dyM / distM) * force * 5;
+        const pushX = (dxM / distM) * force * 8;
+        const pushY = (dyM / distM) * force * 8;
         node.currentX -= pushX;
         node.currentY -= pushY;
       }
     });
 
-    // Draw connections (constellation lines)
+    // Draw connections (circuit board style)
     ctx.lineWidth = 1;
     for (let i = 0; i < nodes.length; i++) {
       for (let j = i + 1; j < nodes.length; j++) {
@@ -144,11 +147,22 @@ function initSkills() {
         const dy = nodes[i].currentY - nodes[j].currentY;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < 200) { // Connection threshold
-          const opacity = 1 - (dist / 200);
-          ctx.strokeStyle = `rgba(42, 42, 42, ${opacity * 0.5})`; // --color-border basically
+        if (dist < 180) { // Connection threshold
+          const opacity = 1 - (dist / 180);
+          ctx.strokeStyle = `rgba(0, 240, 255, ${opacity * 0.3})`;
+          
           ctx.beginPath();
+          // Draw stepped lines for circuit look
           ctx.moveTo(nodes[i].currentX, nodes[i].currentY);
+          
+          if (Math.abs(dx) > Math.abs(dy)) {
+            ctx.lineTo(nodes[i].currentX - dx/2, nodes[i].currentY);
+            ctx.lineTo(nodes[i].currentX - dx/2, nodes[j].currentY);
+          } else {
+            ctx.lineTo(nodes[i].currentX, nodes[i].currentY - dy/2);
+            ctx.lineTo(nodes[j].currentX, nodes[i].currentY - dy/2);
+          }
+          
           ctx.lineTo(nodes[j].currentX, nodes[j].currentY);
           ctx.stroke();
         }
@@ -160,9 +174,17 @@ function initSkills() {
     
     nodes.forEach(node => {
       if (node.currentRadius > 0.1) {
-        ctx.fillStyle = categories[node.category].color;
+        const cat = categories[node.category];
+        ctx.fillStyle = cat.color;
+        
+        let drawRadius = node.currentRadius;
+        if (cat.pulse) {
+          drawRadius += Math.sin(time + node.pulsePhase) * 1.5;
+        }
+
         ctx.beginPath();
-        ctx.arc(node.currentX, node.currentY, node.currentRadius, 0, Math.PI * 2);
+        // Square nodes for HUD style
+        ctx.rect(node.currentX - drawRadius, node.currentY - drawRadius, drawRadius * 2, drawRadius * 2);
         ctx.fill();
 
         // Check hover for tooltip
@@ -174,37 +196,44 @@ function initSkills() {
         if (distM < node.targetRadius + 15) {
           hoveredNode = node;
           // Highlight stroke
-          ctx.strokeStyle = 'rgba(255,255,255,0.3)';
-          ctx.lineWidth = 2;
-          ctx.stroke();
+          ctx.strokeStyle = cat.color;
+          ctx.lineWidth = 1.5;
+          ctx.strokeRect(node.currentX - drawRadius - 3, node.currentY - drawRadius - 3, drawRadius * 2 + 6, drawRadius * 2 + 6);
         }
       }
     });
 
     // Draw Tooltip last so it's on top
     if (hoveredNode) {
-      canvas.style.cursor = 'pointer';
+      canvas.style.cursor = 'crosshair';
       
-      const padding = 10;
-      ctx.font = '12px "JetBrains Mono", monospace';
+      const padding = 12;
+      ctx.font = '12px "Share Tech Mono", monospace';
       const textWidth = ctx.measureText(hoveredNode.name).width;
       
-      const tipX = hoveredNode.currentX + 15;
-      const tipY = hoveredNode.currentY - 15;
+      const tipX = hoveredNode.currentX + 20;
+      const tipY = hoveredNode.currentY - 20;
       
-      // Tooltip BG
-      ctx.fillStyle = 'rgba(10,10,10,0.9)'; // --color-bg
-      ctx.strokeStyle = 'rgba(197,160,89,1)'; // --color-border (#C5A059)
+      // Tooltip BG - HUD Panel
+      ctx.fillStyle = 'rgba(5, 5, 16, 0.9)'; // Dark void
+      ctx.strokeStyle = categories[hoveredNode.category].color;
       ctx.lineWidth = 1;
       
       ctx.beginPath();
-      ctx.roundRect(tipX, tipY - 16, textWidth + padding * 2, 24, 4);
+      // Clip-path shaped tooltip
+      ctx.moveTo(tipX, tipY - 20);
+      ctx.lineTo(tipX + textWidth + padding * 2, tipY - 20);
+      ctx.lineTo(tipX + textWidth + padding * 2, tipY + 4);
+      ctx.lineTo(tipX + textWidth + padding * 2 - 8, tipY + 12);
+      ctx.lineTo(tipX, tipY + 12);
+      ctx.closePath();
+      
       ctx.fill();
       ctx.stroke();
       
       // Tooltip Text
-      ctx.fillStyle = '#F3EFE9'; // --color-text
-      ctx.fillText(hoveredNode.name, tipX + padding, tipY);
+      ctx.fillStyle = '#E0FFFF'; // --color-text
+      ctx.fillText(hoveredNode.name, tipX + padding, tipY - 1);
     } else {
       canvas.style.cursor = 'crosshair';
     }

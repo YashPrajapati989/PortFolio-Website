@@ -32,10 +32,10 @@ function initHero() {
 
   particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
 
-  // Particle Material (warm accent color)
+  // Particle Material (Neon Cyan color)
   const material = new THREE.PointsMaterial({
     size: 0.15,
-    color: 0xC5A059, 
+    color: 0x00F0FF, 
     transparent: true,
     opacity: 0.6,
     blending: THREE.AdditiveBlending

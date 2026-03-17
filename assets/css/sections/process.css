@@ -1,0 +1,141 @@
+/* ==========================================================================
+   Module 06: The Process
+   ========================================================================== */
+
+.process {
+  padding: var(--space-16) 0;
+  background-color: var(--color-surface); /* Slightly lighter background than bg */
+  min-height: 100vh;
+}
+
+.process-header {
+  margin-bottom: var(--space-12);
+  text-align: center;
+}
+
+.process-timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--space-8) 0;
+}
+
+/* Vertical Line */
+.process-line {
+  position: absolute;
+  top: 0;
+  left: 24px; /* Center of the node (48px / 2) */
+  bottom: 0;
+  width: 2px;
+  background-color: var(--color-border);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .process-line {
+    left: 50%;
+  }
+}
+
+.process-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--space-12);
+  padding-left: 64px; /* Space for node on mobile */
+  /* GSAP initial state */
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.process-step:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .process-step {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 0;
+  }
+  
+  /* Alternating layout on desktop */
+  .process-step:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+}
+
+/* The circular node */
+.process-node {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--color-bg);
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: border-color var(--duration-base) var(--ease-smooth),
+              box-shadow var(--duration-base) var(--ease-smooth);
+}
+
+@media (min-width: 768px) {
+  .process-node {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.process-number {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  transition: color var(--duration-base) var(--ease-smooth);
+}
+
+.process-content {
+  background-color: var(--color-bg);
+  padding: var(--space-6);
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  width: 100%;
+  position: relative;
+  transition: border-color var(--duration-base) var(--ease-smooth),
+              transform var(--duration-base) var(--ease-smooth);
+}
+
+@media (min-width: 768px) {
+  .process-content {
+    width: calc(50% - 48px); /* Take up half minus space for center line/node */
+  }
+}
+
+.process-title {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-3);
+  color: var(--color-text);
+}
+
+.process-desc {
+  color: var(--color-text-muted);
+}
+
+/* Hover / Active States triggered by JS */
+.process-step.is-active .process-node {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 15px rgba(232, 201, 122, 0.3);
+}
+
+.process-step.is-active .process-number {
+  color: var(--color-accent);
+}
+
+.process-step.is-active .process-content {
+  border-color: var(--color-border);
+  transform: translateY(-5px);
+}

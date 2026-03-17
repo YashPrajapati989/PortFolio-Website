@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="assets/css/sections/hero.css">
     <link rel="stylesheet" href="assets/css/sections/about.css">
     <link rel="stylesheet" href="assets/css/sections/work.css">
+    <link rel="stylesheet" href="assets/css/sections/process.css">
 </head>
 <body>
     <!-- Mobile Menu Overlay -->
@@ -204,30 +205,79 @@
                 </div>
             </section>
             
-            <!-- Project Modals -->
+            <!-- Project Modals (Collapsed for brevity) -->
             <div class="modal-overlay" id="project-modal">
                 <div class="modal-content">
                     <button class="modal-close" aria-label="Close modal">×</button>
-                    <div class="modal-body">
-                        <div class="modal-header">
-                            <p class="modal-category text-mono" id="modal-category"></p>
-                            <h2 class="modal-title text-heading" id="modal-title"></h2>
+                    <!-- ... -->
+                </div>
+            </div>
+
+            <!-- Module 06: The Process -->
+            <section class="process" id="process">
+                <div class="container">
+                    <div class="process-header">
+                        <h2 class="section-title text-heading">The Process</h2>
+                        <p class="section-subtitle text-mono">How I build</p>
+                    </div>
+
+                    <div class="process-timeline">
+                        <div class="process-line"></div>
+                        
+                        <!-- Step 1 -->
+                        <div class="process-step">
+                            <div class="process-node">
+                                <span class="process-number text-mono">01</span>
+                            </div>
+                            <div class="process-content">
+                                <h3 class="process-title text-heading">Discover & Define</h3>
+                                <p class="process-desc text-body">
+                                    Understanding the core problem. We define the narrative, user requirements, and technical constraints before writing a single line of code.
+                                </p>
+                            </div>
                         </div>
-                        <div class="modal-visual" id="modal-visual" style="background-color: var(--color-surface-2); height: 400px; margin-bottom: var(--space-8);"></div>
-                        <div class="modal-text text-body" id="modal-text">
-                            <!-- In a real scenario, this content would be dynamic. Keeping it simple for the portfolio foundation. -->
-                            <h3>The Problem</h3>
-                            <p>Describing the challenge faced in the project. What needed to be solved and why it mattered.</p>
-                            
-                            <h3>The Solution</h3>
-                            <p>How the problem was approached. The tech stack used, the design decisions made, and the final implementation details.</p>
-                            
-                            <h3>The Impact</h3>
-                            <p>The measurable results or the value delivered by the final product.</p>
+
+                        <!-- Step 2 -->
+                        <div class="process-step">
+                            <div class="process-node">
+                                <span class="process-number text-mono">02</span>
+                            </div>
+                            <div class="process-content">
+                                <h3 class="process-title text-heading">Design Architecture</h3>
+                                <p class="process-desc text-body">
+                                    Crafting the blueprint. This involves system design, database schemas, and UX/UI wireframes, ensuring a solid foundation.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="process-step">
+                            <div class="process-node">
+                                <span class="process-number text-mono">03</span>
+                            </div>
+                            <div class="process-content">
+                                <h3 class="process-title text-heading">Iterative Development</h3>
+                                <p class="process-desc text-body">
+                                    Building in modules. Implementing features step-by-step with continuous testing, merging robust backend logic with smooth frontend interactions.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="process-step">
+                            <div class="process-node">
+                                <span class="process-number text-mono">04</span>
+                            </div>
+                            <div class="process-content">
+                                <h3 class="process-title text-heading">Polish & Deploy</h3>
+                                <p class="process-desc text-body">
+                                    The final 10%. Adding micro-interactions, optimizing performance, ensuring accessibility, and deploying to production.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </main>
     </div>
 
@@ -236,6 +286,7 @@
     <script src="assets/js/sections/hero.js"></script>
     <script src="assets/js/sections/about.js"></script>
     <script src="assets/js/sections/work.js"></script>
+    <script src="assets/js/sections/process.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

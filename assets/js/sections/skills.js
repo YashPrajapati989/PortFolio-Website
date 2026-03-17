@@ -26,9 +26,9 @@ function initSkills() {
 
   // Skill Data
   const categories = {
-    core: { color: '#E8C97A', size: 6 },     // --color-accent
-    supporting: { color: '#7C9EE8', size: 4 }, // --color-accent-2
-    familiar: { color: '#888580', size: 2.5 }  // --color-text-muted
+    core: { color: '#C5A059', size: 6 },     // Gold
+    supporting: { color: '#C64B3E', size: 4 }, // Terracotta
+    familiar: { color: '#A0A0A0', size: 2.5 }  // Muted
   };
 
   const skillsData = [
@@ -194,7 +194,7 @@ function initSkills() {
       
       // Tooltip BG
       ctx.fillStyle = 'rgba(10,10,10,0.9)'; // --color-bg
-      ctx.strokeStyle = 'rgba(42,42,42,1)'; // --color-border
+      ctx.strokeStyle = 'rgba(197,160,89,1)'; // --color-border (#C5A059)
       ctx.lineWidth = 1;
       
       ctx.beginPath();
@@ -203,7 +203,7 @@ function initSkills() {
       ctx.stroke();
       
       // Tooltip Text
-      ctx.fillStyle = '#F0EDE8'; // --color-text
+      ctx.fillStyle = '#F3EFE9'; // --color-text
       ctx.fillText(hoveredNode.name, tipX + padding, tipY);
     } else {
       canvas.style.cursor = 'crosshair';

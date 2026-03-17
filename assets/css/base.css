@@ -1,36 +1,19 @@
 :root {
-  /* Colors */
+  /* Colors - Redesign (Cinematic Museum) */
   --color-bg: #0A0A0A;
-  --color-surface: #111111;
-  --color-surface-2: #1A1A1A;
-  --color-border: #2A2A2A;
-  --color-text: #F0EDE8;
-  --color-text-muted: #888580;
-  --color-accent: #E8C97A;
-  --color-accent-2: #7C9EE8;
+  --color-surface: rgba(26, 26, 26, 0.7); /* Base for glassmorphism */
+  --color-surface-2: rgba(43, 43, 43, 0.5); /* Lighter glass */
+  --color-border: #C5A059; /* Gold borders */
+  --color-border-dim: rgba(197, 160, 89, 0.3); /* Dimmed gold */
+  --color-text: #F3EFE9;
+  --color-text-muted: #A0A0A0;
+  --color-accent: #C5A059; /* Gold */
+  --color-accent-2: #C64B3E; /* Terracotta Red */
 
   /* Typography */
-  --font-heading: 'Cormorant Garamond', serif;
-  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Lora', serif;
   --font-mono: 'JetBrains Mono', monospace;
-
-  --text-xs: 0.75rem;     /* 12px */
-  --text-sm: 0.875rem;    /* 14px */
-  --text-base: 1rem;      /* 16px */
-  --text-lg: 1.25rem;     /* 20px */
-  --text-xl: 1.5rem;      /* 24px */
-  --text-2xl: 2rem;       /* 32px */
-  --text-3xl: 3rem;       /* 48px */
-  --text-4xl: 4.5rem;     /* 72px */
-  --text-5xl: 7rem;       /* 112px */
-
-  /* Motion */
-  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --duration-fast: 200ms;
-  --duration-base: 400ms;
-  --duration-slow: 700ms;
-  --duration-xslow: 1200ms;
 
   /* Spacing */
   --space-1: 0.25rem;
@@ -39,12 +22,33 @@
   --space-4: 1rem;
   --space-6: 1.5rem;
   --space-8: 2rem;
-  --space-10: 2.5rem;
   --space-12: 3rem;
   --space-16: 4rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* Typography sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.5rem;
+  --text-5xl: 3.5rem;
+  --text-6xl: 4.5rem;
+  --text-7xl: 6rem;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.4s ease;
+  --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-base: 400ms;
 }
 
-/* Reset & Base Styles */
+/* Base Reset & Styles */
 * {
   margin: 0;
   padding: 0;
@@ -52,50 +56,47 @@
 }
 
 html {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.6;
   font-size: 16px;
   scroll-behavior: smooth;
-  background-color: var(--color-bg);
-  color: var(--color-text);
+}
+
+body {
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  font-family: var(--font-body);
-  line-height: 1.6;
-  overflow-x: hidden;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-dim);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  font-weight: 400;
-  line-height: 1.1;
-  color: var(--color-text);
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-ul, ol {
-  list-style: none;
-}
-
-img, picture, video, canvas, svg {
-  display: block;
-  max-width: 100%;
-}
-
-button, input, textarea, select {
-  font: inherit;
-  color: inherit;
-  background: transparent;
-  border: none;
-  outline: none;
-}
-
-/* Base utility classes for typography */
-.text-heading { font-family: var(--font-heading); }
+/* Typography Utility Classes */
+.text-heading { font-family: var(--font-heading); font-style: italic; letter-spacing: 0.05em; }
 .text-body { font-family: var(--font-body); }
-.text-mono { font-family: var(--font-mono); }
+.text-mono { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; }
+.text-xs { font-size: var(--text-xs); }
+.text-sm { font-size: var(--text-sm); }
+.text-lg { font-size: var(--text-lg); }
+.text-xl { font-size: var(--text-xl); }
+.text-2xl { font-size: var(--text-2xl); }
+.text-3xl { font-size: var(--text-3xl); }
+.text-4xl { font-size: var(--text-4xl); }
+.text-5xl { font-size: var(--text-5xl); }
+.text-6xl { font-size: var(--text-6xl); }
+.text-7xl { font-size: var(--text-7xl); }
+.text-muted { color: var(--color-text-muted); }

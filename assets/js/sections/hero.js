@@ -35,7 +35,7 @@ function initHero() {
   // Particle Material (warm accent color)
   const material = new THREE.PointsMaterial({
     size: 0.15,
-    color: 0xE8C97A, 
+    color: 0xC5A059, 
     transparent: true,
     opacity: 0.6,
     blending: THREE.AdditiveBlending

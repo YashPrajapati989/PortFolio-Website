@@ -8,9 +8,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initNavigation();
   
-  if (typeof window.animations.initHero === 'function') {
-    window.animations.initHero();
-  }
+  // Hide preloader once everything is loaded
+  window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+      setTimeout(() => {
+        preloader.classList.add('is-hidden');
+        // Let body scroll again
+        document.body.style.overflowY = 'auto';
+        
+        // Now trigger the hero section initialization
+        if (typeof window.animations.initHero === 'function') {
+          window.animations.initHero();
+        }
+      }, 500); // Small artificial delay to ensure smooth transition
+    } else {
+        if (typeof window.animations.initHero === 'function') {
+          window.animations.initHero();
+        }
+    }
+  });
+
+  // Remove the immediate initHero call since we do it after load now
+  // if (typeof window.animations.initHero === 'function') {
+  //   window.animations.initHero();
+  // }
 
   if (typeof window.animations.initAbout === 'function') {
     window.animations.initAbout();

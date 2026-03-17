@@ -1,0 +1,61 @@
+/* ==========================================================================
+   Module 11: Polish (Preloader & Interactions)
+   ========================================================================== */
+
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-bg);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+}
+
+.preloader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.preloader-text {
+  color: var(--color-accent);
+  margin-bottom: var(--space-4);
+  font-size: var(--text-sm);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: pulse 1.5s infinite;
+}
+
+.preloader-bar {
+  width: 200px;
+  height: 2px;
+  background-color: var(--color-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.preloader-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 30%;
+  background-color: var(--color-accent-2);
+  animation: loadSlide 1s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes loadSlide {
+  0% { left: 0; width: 30%; }
+  100% { left: 70%; width: 30%; }
+}

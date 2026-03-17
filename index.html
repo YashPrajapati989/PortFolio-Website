@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/sections/nav.css">
     <link rel="stylesheet" href="assets/css/sections/hero.css">
+    <link rel="stylesheet" href="assets/css/sections/about.css">
 </head>
 <body>
     <!-- Mobile Menu Overlay -->
@@ -73,14 +74,79 @@
             </div>
         </section>
         
-        <!-- Content placeholder for remaining sections -->
         <main id="main-content">
+            <!-- Module 04: Origin Story -->
+            <section class="about" id="about">
+                <div class="about-header container">
+                    <h2 class="section-title text-heading">Origin Story</h2>
+                    <p class="section-subtitle text-mono">How it all started</p>
+                </div>
+                
+                <div class="timeline-container" id="timeline-container">
+                    <div class="timeline-wrapper" id="timeline-wrapper">
+                        <!-- Chapter 1 -->
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <span class="timeline-year text-mono">The Beginning</span>
+                                <h3 class="timeline-title text-heading">Discovering the Web</h3>
+                                <p class="timeline-text text-body">
+                                    Fascinated by how lines of code could create interactive experiences, I started building small scripts and single-page sites, lighting the spark for full-stack development.
+                                </p>
+                            </div>
+                            <div class="timeline-visual">
+                                <!-- Placeholder for parallax image -->
+                                <div class="parallax-img-wrapper">
+                                    <div class="parallax-img" style="background-color: var(--color-surface-2);"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chapter 2 -->
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <span class="timeline-year text-mono">The Realization</span>
+                                <h3 class="timeline-title text-heading">Bridging Design & Code</h3>
+                                <p class="timeline-text text-body">
+                                    I realized that true digital experiences aren't just built; they are crafted. I began focusing on the intersection of robust backend logic and beautiful, intuitive frontend design.
+                                </p>
+                            </div>
+                            <div class="timeline-visual">
+                                <div class="parallax-img-wrapper">
+                                    <div class="parallax-img" style="background-color: var(--color-surface);"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chapter 3 -->
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <span class="timeline-year text-mono">Present Day</span>
+                                <h3 class="timeline-title text-heading">Building Stories</h3>
+                                <p class="timeline-text text-body">
+                                    Today, I build applications like Smart Attendx and intelligent video interfaces, treating every project as a narrative that solves real problems with elegance.
+                                </p>
+                            </div>
+                            <div class="timeline-visual">
+                                <div class="parallax-img-wrapper">
+                                    <div class="parallax-img" style="background-color: var(--color-border);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Progress Bar -->
+                    <div class="timeline-progress-container">
+                        <div class="timeline-progress-bar" id="timeline-progress"></div>
+                    </div>
+                </div>
+            </section>
         </main>
     </div>
 
     <!-- Scripts -->
     <script src="assets/js/animations.js"></script>
     <script src="assets/js/sections/hero.js"></script>
+    <script src="assets/js/sections/about.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

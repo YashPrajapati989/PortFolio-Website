@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof window.animations.initHero === 'function') {
     window.animations.initHero();
   }
+
+  if (typeof window.animations.initAbout === 'function') {
+    window.animations.initAbout();
+  }
 });
 
 function initNavigation() {

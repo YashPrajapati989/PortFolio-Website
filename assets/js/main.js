@@ -15,6 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof window.animations.initAbout === 'function') {
     window.animations.initAbout();
   }
+
+  if (typeof window.animations.initWork === 'function') {
+    window.animations.initWork();
+  }
 });
 
 function initNavigation() {

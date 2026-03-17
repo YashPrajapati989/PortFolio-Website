@@ -1,0 +1,266 @@
+/* ==========================================================================
+   Module 05: The Work (Masonry & Modals)
+   ========================================================================== */
+
+.work {
+  padding: var(--space-16) 0;
+  background-color: var(--color-bg);
+  min-height: 100vh;
+}
+
+.work-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  margin-bottom: var(--space-12);
+}
+
+@media (min-width: 768px) {
+  .work-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+}
+
+.work-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.filter-btn {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding-bottom: var(--space-1);
+  position: relative;
+  transition: color var(--duration-fast) var(--ease-smooth);
+}
+
+.filter-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background-color: var(--color-accent);
+  transition: width var(--duration-fast) var(--ease-smooth);
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  color: var(--color-text);
+}
+
+.filter-btn.active::after,
+.filter-btn:hover::after {
+  width: 100%;
+}
+
+/* Base Work Grid (CSS Grid implementation of Masonry) */
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+}
+
+/* A simple CSS Grid approach that looks varied like masonry */
+@media (min-width: 768px) {
+  .work-grid {
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-flow: dense;
+  }
+  
+  /* Varied sizes */
+  .work-item:nth-child(1) { grid-column: span 8; }
+  .work-item:nth-child(2) { grid-column: span 4; }
+  .work-item:nth-child(3) { grid-column: span 6; }
+  .work-item:nth-child(4) { grid-column: span 6; }
+  .work-item:nth-child(5) { grid-column: span 4; }
+  .work-item:nth-child(6) { grid-column: span 8; }
+  
+  /* If more than 6, default to half width */
+  .work-item { grid-column: span 6; }
+}
+
+.work-item {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  /* GSAP initial state */
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.work-img-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 75%; /* 4:3 aspect ratio */
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.work-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform var(--duration-slow) var(--ease-smooth);
+}
+
+.work-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 10, 10, 0.85);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-6);
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-smooth);
+}
+
+.work-item:hover .work-img {
+  transform: scale(1.05);
+}
+
+.work-item:hover .work-overlay {
+  opacity: 1;
+}
+
+.work-overlay-content {
+  transform: translateY(20px);
+  transition: transform var(--duration-base) var(--ease-smooth);
+}
+
+.work-item:hover .work-overlay-content {
+  transform: translateY(0);
+}
+
+.work-category {
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+  margin-bottom: var(--space-2);
+}
+
+.work-title {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-4);
+}
+
+/* Case Study Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-base) var(--ease-smooth);
+  overflow-y: auto;
+  padding: var(--space-4) 0;
+}
+
+.modal-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  margin: auto;
+  transform: translateY(30px);
+  transition: transform var(--duration-base) var(--ease-smooth) 100ms;
+}
+
+.modal-overlay.is-open .modal-content {
+  transform: translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  font-size: var(--text-2xl);
+  font-family: var(--font-body);
+  color: var(--color-text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--duration-fast) var(--ease-smooth);
+}
+
+.modal-close:hover {
+  color: var(--color-text);
+}
+
+.modal-body {
+  padding: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .modal-body {
+    padding: var(--space-12);
+  }
+}
+
+.modal-header {
+  margin-bottom: var(--space-8);
+}
+
+.modal-category {
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-2);
+}
+
+.modal-title {
+  font-size: var(--text-3xl);
+}
+
+.modal-text {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.modal-text h3 {
+  font-size: var(--text-xl);
+  margin: var(--space-8) 0 var(--space-4);
+  color: var(--color-accent-2);
+}
+
+.modal-text p {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+}

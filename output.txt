@@ -1,0 +1,266 @@
+STORYTELLING PORTFOLIO
+Master Build Prompt & GitHub Workflow Guide
+────────────────────────────────────────
+A complete guide to building a cinematic, scroll-driven personal portfolio
+with a structured GitHub module workflow
+1. Project Overview
+This document contains the complete master prompt and workflow instructions for building a storytelling portfolio website — a cinematic, scroll-driven personal site that presents your work as a narrative, not a resume.
+What makes this portfolio different
+Scroll-driven storytelling — each section earns the scroll like a film scene
+4K cinematic quality — dark-first design with editorial typography
+Modular GitHub workflow — build, test, commit, one section at a time
+Skills shown as a constellation map, not boring progress bars
+Featured case study as a magazine scrollytelling experience
+Contact section as a conversational interface, not a cold form
+2. Tech Stack
+The stack is deliberately lean — no frameworks, no bloat. Every library chosen has a specific job.
+Technology
+Purpose
+HTML5 + CSS3 + Vanilla JS
+Core structure, styling, and interactivity — no unnecessary frameworks
+GSAP
+Scroll animations, section transitions, and reveal effects
+Three.js
+Ambient particle system in the hero background
+Google Fonts
+Cormorant Garamond (headings) + Inter (body) + JetBrains Mono (labels)
+GitHub Pages
+Free hosting — deploy directly from your repository
+Rule: No jQuery. No Bootstrap. Ask Claude before adding any new library.
+3. GitHub Workflow
+Every module follows a strict branch-based workflow. This ensures main is always clean, each feature is isolated, and rollbacks are easy.
+3.1 Branch Strategy
+main          →  production-ready code only (never commit directly)
+dev           →  integration branch (merge tested features here first)
+feature/xxx   →  one branch per module
+Examples:
+  feature/setup        feature/nav          feature/hero
+  feature/about        feature/work         feature/process
+  feature/skills       feature/casestudy    feature/testimonials
+  feature/contact      feature/polish
+3.2 Commit Message Format
+Always follow this format for every commit:
+feat(section):   short description    ← new feature
+fix(section):    short description    ← bug fix
+style(section):  short description    ← visual/CSS change
+chore:           short description    ← config, setup, tooling
+Examples:
+  feat(hero): add particle canvas background
+  fix(nav): correct mobile menu z-index
+  style(about): adjust timeline spacing on mobile
+  chore: init project structure and base CSS variables
+3.3 Module Workflow (follow every time)
+For each module, Claude will follow this exact sequence:
+Tell you the branch to create — with the exact git command
+Build only that module's code
+Give you a test checklist (exactly what to check)
+Give you exact git commands to stage, commit, and push
+Tell you when and how to merge into dev
+Only move to the next module after you confirm it works
+3.4 Git Commands Reference
+Starting a new module:
+git checkout dev
+git pull origin dev
+git checkout -b feature/hero
+Committing your work:
+git add .
+git commit -m "feat(hero): add particle canvas background"
+git push origin feature/hero
+Merging into dev after testing:
+git checkout dev
+git merge feature/hero
+git push origin dev
+Final merge to main for deployment:
+git checkout main
+git merge dev
+git push origin main
+4. Site Modules (Build Order)
+Build in this exact order. Each module depends on the previous one being complete and committed.
+Module
+Section Name
+Description
+01
+Project Setup & Base
+Folder structure, HTML shell, CSS variables, Google Fonts, responsive grid, base animations
+02
+Navigation
+Fixed top nav, mobile hamburger, hides on scroll down, reappears on scroll up
+03
+Hero Section
+Full viewport, Three.js particles, GSAP film-title animation, typewriter tagline, scroll indicator
+04
+Origin Story (About)
+Horizontal scrolling timeline, chapter-based journey, parallax photos, milestone text
+05
+The Work (Projects)
+Masonry grid, hover story reveal, modal case studies, category filter
+06
+The Process
+Animated step diagram, expandable nodes on click, scroll-triggered entries
+07
+Skills Constellation
+Canvas constellation map, skill clusters, hover tooltips, animated connections
+08
+Featured Case Study
+Sticky scrollytelling, magazine layout, Problem → Tension → Solution → Impact narrative
+09
+Voices (Testimonials)
+Infinite marquee, polaroid-style cards, client logo strip below
+10
+Contact
+Chat-style conversational form, availability badge, social links, closing signature
+11
+Final Polish & Deploy
+Preloader, page transitions, SEO/OG tags, Lighthouse audit, GitHub Pages deployment
+5. Design System
+Every module must use these design tokens. Never hardcode values — always reference the CSS variable.
+5.1 Color Palette
+--color-bg
+#0A0A0A
+Near black — main background
+--color-surface
+#111111
+Cards and panels
+--color-surface-2
+#1A1A1A
+Hover states
+--color-border
+#2A2A2A
+Subtle borders
+--color-text
+#F0EDE8
+Primary text — warm white
+--color-text-muted
+#888580
+Secondary / muted text
+--color-accent
+#E8C97A
+Gold accent — CTAs, highlights
+--color-accent-2
+#7C9EE8
+Blue accent — links, tags
+5.2 Typography
+Headings : Cormorant Garamond (serif, cinematic weight)
+Body      : Inter (clean sans-serif)
+Labels    : JetBrains Mono (tags, code, small labels)
+--text-xs:   0.75rem    (12px)
+--text-sm:   0.875rem   (14px)
+--text-base: 1rem       (16px)
+--text-lg:   1.25rem    (20px)
+--text-xl:   1.5rem     (24px)
+--text-2xl:  2rem       (32px)
+--text-3xl:  3rem       (48px)
+--text-4xl:  4.5rem     (72px)
+--text-5xl:  7rem       (112px)  ← hero headline only
+5.3 Motion Tokens
+--ease-smooth:  cubic-bezier(0.16, 1, 0.3, 1)
+--ease-bounce:  cubic-bezier(0.34, 1.56, 0.64, 1)
+--duration-fast:   200ms
+--duration-base:   400ms
+--duration-slow:   700ms
+--duration-xslow:  1200ms
+5.4 Spacing Scale
+--space-1: 0.25rem   --space-2: 0.5rem    --space-3: 0.75rem
+--space-4: 1rem      --space-6: 1.5rem    --space-8: 2rem
+--space-10: 2.5rem   --space-12: 3rem     --space-16: 4rem
+Base grid: 8px. All spacing must be a multiple of 8.
+6. Folder Structure
+portfolio/
+├── index.html
+├── assets/
+│   ├── css/
+│   │   ├── base.css              ← reset, variables, typography
+│   │   ├── components.css        ← reusable UI pieces
+│   │   └── sections/
+│   │       ├── hero.css
+│   │       ├── about.css
+│   │       └── ...               ← one file per section
+│   ├── js/
+│   │   ├── main.js               ← init, scroll logic
+│   │   ├── animations.js         ← GSAP setup
+│   │   └── sections/
+│   │       ├── hero.js
+│   │       ├── about.js
+│   │       └── ...               ← one file per section
+│   └── images/
+│       └── ...                   ← your photos and project images
+├── .gitignore
+└── README.md
+7. Pre-Build Setup Questions
+Before Claude writes any code, it will ask you these 7 questions. Have your answers ready.
+#
+Question
+Your Answer
+1
+What is your name and one-line tagline/role?
+ 
+2
+What is your field? (design / dev / photography / writing / other)
+ 
+3
+How many projects will you feature? List their titles.
+ 
+4
+Do you have a GitHub account? What is your username?
+ 
+5
+What chapters/milestones for your Origin Story?
+ 
+6
+Who are 2-3 people who can give a testimonial quote?
+ 
+7
+Do you want to change any colors from the design system?
+ 
+8. The Master Prompt
+Copy everything below this line and paste it into a new Claude conversation to begin building.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# MASTER BUILD PROMPT — Storytelling Portfolio Website
+## Your Role
+You are a senior full-stack developer and UI/UX engineer. You will help me
+build my personal storytelling portfolio website from scratch, module by
+module, using a structured GitHub workflow. You will never build everything
+at once — always one focused module, then pause for testing and commit.
+## Project Overview
+Build a cinematic, storytelling-first personal portfolio website with:
+- 4K quality visuals, dark-first design
+- Scroll-driven narrative structure (feels like a film, not a resume)
+- Smooth animations and micro-interactions
+- Fully responsive (mobile, tablet, desktop, 4K)
+- Fast performance (Lighthouse score 90+)
+- Hosted via GitHub Pages (free)
+## Tech Stack
+- HTML5 + CSS3 + Vanilla JavaScript (no frameworks unless I approve)
+- GSAP (scroll animations), Three.js (hero particles), Google Fonts
+- No jQuery. No Bootstrap. GitHub Pages for deployment.
+## GitHub Workflow Rules
+Branch strategy:
+  main        → production only
+  dev         → integration (merge features here first)
+  feature/xxx → one branch per module
+Commit format: feat(section): description
+                fix(section): description
+                style(section): description
+                chore: description
+For each module: create branch → build → test checklist → commit → merge dev
+## Rules
+- Never skip the test checklist before moving to next module
+- Never merge directly to main
+- Always give exact git commands
+- Remind me to pull latest dev before each new feature branch
+- At end of each module, summarize what was built in 2 sentences
+- If I ask to rush or skip steps, refuse and explain why
+## Start Command
+Greet me as my build partner, explain the workflow in 3 bullet points,
+then ask me Question 1 of 7 setup questions.
+9. Claude's Non-Negotiable Rules
+These rules are baked into the master prompt. Claude will refuse to break them:
+Never build more than one module at a time
+Never commit directly to main — always feature → dev → main
+Always give you exact git commands, never assume you know them
+Always provide a test checklist before moving forward
+If something breaks, create a fix/ branch — never patch on main
+If you ask to rush or skip steps, Claude will refuse and explain why
+End every module with a 2-sentence summary of what was built
+Remind you to pull latest dev before starting each new feature branch
+Generated by Claude · Storytelling Portfolio Build System

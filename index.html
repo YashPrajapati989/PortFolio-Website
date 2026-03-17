@@ -19,10 +19,41 @@
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/sections/nav.css">
 </head>
 <body>
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobile-menu">
+        <ul class="mobile-nav-list">
+            <li><a href="#about" class="mobile-nav-link">Origin</a></li>
+            <li><a href="#work" class="mobile-nav-link">Work</a></li>
+            <li><a href="#process" class="mobile-nav-link">Process</a></li>
+            <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+        </ul>
+    </div>
     <div id="app">
-        <!-- Content will go here -->
+        <!-- Module 02: Navigation -->
+        <header class="site-header" id="site-header">
+            <div class="container header-inner">
+                <a href="#" class="brand text-heading">Yash Prajapati</a>
+                <nav class="main-nav" id="main-nav">
+                    <ul class="nav-list text-mono">
+                        <li><a href="#about" class="nav-link">Origin</a></li>
+                        <li><a href="#work" class="nav-link">Work</a></li>
+                        <li><a href="#process" class="nav-link">Process</a></li>
+                        <li><a href="#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="hamburger" id="hamburger" aria-label="Menu">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </button>
+            </div>
+        </header>
+        
+        <!-- Content placeholder -->
+        <main id="main-content">
+        </main>
     </div>
 
     <!-- Scripts -->

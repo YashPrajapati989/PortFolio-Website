@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="assets/css/sections/work.css">
     <link rel="stylesheet" href="assets/css/sections/process.css">
     <link rel="stylesheet" href="assets/css/sections/skills.css">
+    <link rel="stylesheet" href="assets/css/sections/case-study.css">
 </head>
 <body>
     <!-- Mobile Menu Overlay -->
@@ -317,6 +318,62 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Module 08: Featured Case Study -->
+            <section class="case-study" id="case-study">
+                <div class="container pb-16">
+                    <h2 class="section-title text-heading">Featured Concept</h2>
+                    <p class="section-subtitle text-mono">Deep Dive</p>
+                </div>
+                
+                <div class="cs-container" id="cs-container">
+                    <!-- Left: Sticky Visuals -->
+                    <div class="cs-visuals" id="cs-visuals">
+                        <div class="cs-img-container">
+                            <div class="cs-img cs-img-1" id="cs-img-1"></div>
+                            <div class="cs-img cs-img-2" id="cs-img-2"></div>
+                            <div class="cs-img cs-img-3" id="cs-img-3"></div>
+                            <div class="cs-img cs-img-4" id="cs-img-4"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Scrolling Narrative -->
+                    <div class="cs-content">
+                        <!-- Section 1: Introduction -->
+                        <div class="cs-section" data-step="1">
+                            <h3 class="cs-title text-heading">Smart Video Player</h3>
+                            <p class="cs-category text-mono">AI Interface Design</p>
+                            <p class="cs-text text-body">
+                                The goal was to rethink how users interact with educational video content by integrating AI-driven insights directly into the playback experience without cluttering the interface.
+                            </p>
+                        </div>
+                        
+                        <!-- Section 2: The Problem -->
+                        <div class="cs-section" data-step="2">
+                            <h4 class="cs-heading text-mono">01 / The Problem</h4>
+                            <p class="cs-text text-body">
+                                Traditional video players force users to leave the context of the video to search for related concepts, take notes, or understand complex terms. This context switching disrupts the learning flow.
+                            </p>
+                        </div>
+                        
+                        <!-- Section 3: The Solution -->
+                        <div class="cs-section" data-step="3">
+                            <h4 class="cs-heading text-mono">02 / The Solution</h4>
+                            <p class="cs-text text-body">
+                                We designed a contextual sidebar that analyzes the video transcript in real-time, extracting key entities and providing definitions, related links, and automated chapter markers dynamically as the video plays.
+                            </p>
+                        </div>
+                        
+                        <!-- Section 4: The Impact -->
+                        <div class="cs-section" data-step="4">
+                            <h4 class="cs-heading text-mono">03 / The Impact</h4>
+                            <p class="cs-text text-body">
+                                By keeping the cognitive load low and contextual information high, user retention improved by 40%, and the average watch time increased significantly. The interface felt invisible yet omniscient.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
     </div>
 
@@ -327,6 +384,7 @@
     <script src="assets/js/sections/work.js"></script>
     <script src="assets/js/sections/process.js"></script>
     <script src="assets/js/sections/skills.js"></script>
+    <script src="assets/js/sections/case-study.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

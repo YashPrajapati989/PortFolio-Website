@@ -1,0 +1,136 @@
+/* ==========================================================================
+   Module 08: Featured Case Study (Sticky Scrollytelling)
+   ========================================================================== */
+
+.case-study {
+  padding: var(--space-16) 0;
+  background-color: var(--color-surface);
+  position: relative;
+}
+
+.pb-16 {
+  padding-bottom: var(--space-16);
+}
+
+.cs-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .cs-container {
+    flex-direction: row;
+  }
+}
+
+/* Left side - Sticky Visuals */
+.cs-visuals {
+  width: 100%;
+  height: 50vh;
+  position: sticky;
+  top: 10vh; /* Sit a bit below the header */
+  z-index: 10;
+  padding: var(--space-4);
+}
+
+@media (min-width: 992px) {
+  .cs-visuals {
+    width: 50%;
+    height: 80vh;
+    padding: 0 var(--space-8);
+  }
+}
+
+.cs-img-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: var(--color-bg);
+}
+
+.cs-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-smooth);
+}
+
+/* Placeholder colors for the different stages */
+.cs-img-1 { background-color: #2A2A2A; opacity: 1; } /* Initial visible */
+.cs-img-2 { background-color: #3A2A2A; } /* Reddish */
+.cs-img-3 { background-color: #2A3A2A; } /* Greenish */
+.cs-img-4 { background-color: #2A2A3A; } /* Blueish */
+
+/* When active, show the image */
+.cs-img.is-active {
+  opacity: 1;
+  z-index: 2;
+}
+
+/* Right side - Scrolling Narrative */
+.cs-content {
+  width: 100%;
+  padding: var(--space-4);
+  position: relative;
+  z-index: 20;
+  /* Push it down on mobile so it doesn't overlap the sticky visual immediately */
+  margin-top: 50vh; 
+}
+
+@media (min-width: 992px) {
+  .cs-content {
+    width: 50%;
+    margin-top: 0;
+    padding: 0 var(--space-8) 0 var(--space-16);
+  }
+}
+
+.cs-section {
+  min-height: 80vh; /* Gives plenty of scroll space for each step */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0.3; /* Dim non-active sections */
+  transition: opacity var(--duration-base) var(--ease-smooth);
+}
+
+.cs-section.is-active {
+  opacity: 1;
+}
+
+.cs-title {
+  font-size: var(--text-4xl);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.cs-category {
+  color: var(--color-accent);
+  margin-bottom: var(--space-8);
+}
+
+.cs-heading {
+  color: var(--color-accent-2);
+  margin-bottom: var(--space-6);
+  font-size: var(--text-lg);
+}
+
+.cs-text {
+  font-size: var(--text-xl);
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+@media (min-width: 992px) {
+  .cs-text {
+    font-size: var(--text-2xl);
+  }
+}

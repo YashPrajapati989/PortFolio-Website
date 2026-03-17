@@ -27,6 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof window.animations.initSkills === 'function') {
     window.animations.initSkills();
   }
+
+  if (typeof window.animations.initCaseStudy === 'function') {
+    window.animations.initCaseStudy();
+  }
 });
 
 function initNavigation() {
